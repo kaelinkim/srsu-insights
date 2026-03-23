@@ -183,24 +183,48 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 .ev-text{font-size:13px;color:var(--t1);line-height:1.6}
 .ev-sub{font-size:12px;color:var(--t2);line-height:1.5;font-style:italic;border-left:2px solid var(--border);padding-left:10px;margin-top:4px}
 
-/* JOURNEY MAP NEW */
-.jmap{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--white)}
-.jstage{padding:22px 18px;border-right:1px solid var(--border);display:flex;flex-direction:column;gap:10px}
-.jstage:last-child{border-right:none}
-.js-num{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.1em}
-.js-title{font-size:13px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
-.js-beh{display:flex;flex-direction:column;gap:5px;flex:1}
-.js-beh p{font-size:11px;color:var(--t2);line-height:1.5;padding-left:10px;position:relative}
-.js-beh p::before{content:'—';position:absolute;left:0;color:var(--t3);font-size:9px;top:2px}
-.jmap-row{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--border)}
-.jmap-cell{padding:12px 18px;border-right:1px solid var(--border);background:var(--bg)}
-.jmap-cell:last-child{border-right:none}
-.jmap-label{font-size:9px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
-.jmap-cell p{font-size:11px;color:var(--t2);line-height:1.5}
-.jnotes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px}
-.jnote{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
-.jnote h4{font-size:13px;font-weight:600;margin-bottom:6px}
-.jnote p{font-size:12px;color:var(--t2);line-height:1.6}
+/* FLOW MAP */
+.fmap{display:flex;flex-direction:column}
+.fstage{display:flex;gap:20px}
+.fstage-l{display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0}
+.fdot{width:12px;height:12px;border-radius:50%;border:2px solid var(--border);background:var(--bg);flex-shrink:0;margin-top:22px}
+.fconn{width:2px;background:var(--border);flex:1;min-height:20px}
+.fbox{flex:1;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px 26px;padding-bottom:32px}
+.fstage:last-of-type .fbox{padding-bottom:22px}
+.fbox-num{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.fbox-title{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px;line-height:1.3}
+.fbox-body{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:12px}
+.fbox-q{font-size:13px;color:var(--t2);font-style:italic;border-left:2px solid var(--border);padding-left:12px;margin:8px 0 4px;line-height:1.6}
+.fbox-qs{font-size:11px;color:var(--t3);padding-left:14px;margin-bottom:8px}
+.fbox-src{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+/* Active (post-pivot) */
+.fstage.active .fdot{background:var(--t2);border-color:var(--t2)}
+.fstage.active .fconn{background:linear-gradient(var(--t2),var(--border))}
+/* Pivot */
+.fstage.pivot .fdot{background:var(--t1);border-color:var(--t1);width:16px;height:16px;margin-top:20px}
+.fstage.pivot .fconn{background:var(--t1)}
+.fstage.pivot .fbox{background:var(--t1);border-color:var(--t1)}
+.fstage.pivot .fbox-num{color:rgba(255,255,255,.4)}
+.fstage.pivot .fbox-title{color:#fff}
+.fstage.pivot .fbox-body{color:rgba(255,255,255,.78)}
+.fstage.pivot .fbox-q{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.22)}
+.fstage.pivot .fbox-qs{color:rgba(255,255,255,.4)}
+.pivot-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.9);margin-bottom:14px}
+.src-inv{background:rgba(255,255,255,.14)!important;color:rgba(255,255,255,.8)!important}
+/* Dashed box (pre-pivot) */
+.fbox.dashed{border-style:dashed;border-color:var(--border);background:var(--bg)}
+/* Fork */
+.ffork-wrap{padding-left:48px;margin-top:0}
+.ffork-connector{display:flex;height:40px;align-items:flex-start;gap:0;position:relative}
+.ffork-connector::before{content:'';position:absolute;top:0;left:0;width:2px;height:24px;background:var(--border)}
+.ffork-connector::after{content:'';position:absolute;top:24px;left:0;width:50%;height:2px;background:var(--border)}
+.ffork{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.forkbox{border-radius:12px;padding:20px 22px;border:1px solid var(--border)}
+.forkbox h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.forkbox p{font-size:13px;line-height:1.65;color:var(--t2)}
+.forkbox.lock{background:var(--t1);border-color:var(--t1)}
+.forkbox.lock h4,.forkbox.lock p{color:rgba(255,255,255,.85)}
+.forkbox.lock h4{color:#fff}
 
 @media(max-width:768px){
   .jmap,.jmap-row{grid-template-columns:1fr}
@@ -227,7 +251,7 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
   <a class="rtoc-item" href="#channel"><span class="rtoc-label">예약 채널</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#painpoints"><span class="rtoc-label">페인포인트</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#compare"><span class="rtoc-label">한일 비교</span><span class="rtoc-dot"></span></a>
-  <a class="rtoc-item" href="#journey"><span class="rtoc-label">고객 여정맵</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#journey"><span class="rtoc-label">단골 여정</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#opportunity"><span class="rtoc-label">기회 영역</span><span class="rtoc-dot"></span></a>
 </div>
 
@@ -921,96 +945,119 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 <section id="journey">
   <div class="wrap">
     <div class="sec-head">
-      <div class="label">고객 여정맵</div>
-      <h2>SRSU 고객의 행동 여정</h2>
-      <p class="lead">탐색부터 재방문 정착까지, 여러 조사에서 공통으로 확인된 SRSU 고객의 단계별 행동 패턴입니다.</p>
+      <div class="label">고객 여정</div>
+      <h2>단골이 되는 순간까지</h2>
+      <p class="lead">결과가 좋다고 단골이 되지 않습니다. <strong>"내가 기억받는 경험"</strong>이 일어나는 순간, 관계가 전환됩니다.</p>
     </div>
 
-    <div class="jmap">
-      <div class="jstage">
-        <div class="js-num">STAGE 01</div>
-        <div class="js-title">시술 관심 발생</div>
-        <div class="js-beh">
-          <p>지인 추천 또는 인플루언서 피드 경유</p>
-          <p>SNS에서 시술 전후 사진 소비</p>
-          <p>특정 시술을 "한번 해봐야겠다" 결심</p>
+    <div class="fmap">
+
+      <!-- 01 -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 01 · 시술 관심 발생</div>
+          <div class="fbox-title">지인 추천 or SNS에서 시작</div>
+          <div class="fbox-body">특정 시술에 관심이 생기는 계기는 주로 지인의 말 한마디. "거기서 했는데 원장님이 진짜 꼼꼼해"가 가장 강력한 트리거. 강남언니는 그 이후 병원 이름을 재확인하거나 가격을 비교하는 용도로 사용.</div>
+          <div class="fbox-src"><span class="src fgd">FGD · Rosie</span><span class="src fgd">FGD · Su</span><span class="src idi">IDI 01</span></div>
         </div>
       </div>
-      <div class="jstage">
-        <div class="js-num">STAGE 02</div>
-        <div class="js-title">병원 탐색</div>
-        <div class="js-beh">
-          <p>강남언니에서 가격 비교·이벤트 확인</p>
-          <p>후기 검토 (신뢰도 낮게 인식)</p>
-          <p>2~3개 후보 병원 선별</p>
-          <p>지인 재확인 후 최종 결정</p>
+
+      <!-- 02 -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 02 · 병원 탐색 & 첫 예약</div>
+          <div class="fbox-title">강남언니에서 가격·이벤트 확인, 앱으로 첫 예약</div>
+          <div class="fbox-body">플랫폼에서 이벤트 가격 비교. 후기는 어뷰징 의심으로 신뢰도 낮게 인식. 결국 지인에게 재확인 후 결정. 첫 예약은 강남언니 앱으로. 강남언니가 가장 적극적으로 쓰이는 유일한 구간.</div>
+          <div class="fbox-src"><span class="src idi">IDI 01</span><span class="src fgd">FGD · Jace</span><span class="src data">데이터 · 신구환 현황</span></div>
         </div>
       </div>
-      <div class="jstage">
-        <div class="js-num">STAGE 03</div>
-        <div class="js-title">첫 방문 · 시술</div>
-        <div class="js-beh">
-          <p>강남언니 앱으로 예약·결제</p>
-          <p>상담실장과 첫 상담</p>
-          <p>의사 술기·태도 관찰 및 평가</p>
-          <p>시술 후 결과 확인 (결정적 순간)</p>
+
+      <!-- 03 -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 03 · 첫 방문</div>
+          <div class="fbox-title">의사를 테스트하는 시간</div>
+          <div class="fbox-body">상담실장의 분위기, 의사의 술기와 태도, 업셀링 여부를 온몸으로 평가. 고관여 시술일수록 이 평가가 깊고 섬세하게 이뤄짐. 시술 결과가 기대 이상이면 "다음에 또 올까?" 수준까지 올라옴.</div>
+          <div class="fbox-q">"꼼꼼하게 해줬어요. 뭘 어떻게 할 건지 설명도 많이 해주고."</div>
+          <div class="fbox-src"><span class="src idi">IDI 01</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div>
         </div>
       </div>
-      <div class="jstage">
-        <div class="js-num">STAGE 04</div>
-        <div class="js-title">SRSU 전환 결정</div>
-        <div class="js-beh">
-          <p>만족 시: 시술 직후 현장 즉시 예약</p>
-          <p>의사·상담실장에 대한 신뢰 형성</p>
-          <p>금액권·다회권 구매 (신뢰 확정)</p>
-          <p>병원 카카오채널 추가</p>
+
+      <!-- 04 - pre-pivot, dashed -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox dashed">
+          <div class="fbox-num">Stage 04 · 결과 만족 — 아직 단골이 아님</div>
+          <div class="fbox-title">"또 올까?" 수준. 관계는 아직 없다</div>
+          <div class="fbox-body">시술 결과 만족이 재방문 이유 1위(31.76% KR)이지만, 이건 재방문 의향이지 단골 전환이 아님. 내가 병원을 기억하는 것이지, 병원은 아직 나를 모른다. 이 단계에서 관계는 여전히 일방적이다.</div>
+          <div class="fbox-src"><span class="src survey">고객 설문 1차 · KR</span></div>
         </div>
       </div>
-      <div class="jstage">
-        <div class="js-num">STAGE 05</div>
-        <div class="js-title">반복 방문</div>
-        <div class="js-beh">
-          <p>카카오톡·전화로 재예약</p>
-          <p>강남언니는 포인트 사용 시만 재접속</p>
-          <p>상담실장과 지속적 라포 형성</p>
-          <p>새 시술은 담당 의사에게 먼저 문의</p>
+
+      <!-- PIVOT -->
+      <div class="fstage pivot">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="pivot-tag">✦ 전환점</div>
+          <div class="fbox-num">결정적 순간</div>
+          <div class="fbox-title">"내가 기억받는 경험"</div>
+          <div class="fbox-body">원장님이 내 이름을 기억하거나, 지난 시술 결과를 먼저 물어봐 줄 때. 상담실장이 내 피부 상태를 먼저 꺼낼 때. 이 순간 "나는 여기 고객이다"라는 감각이 생기며 관계가 상호적으로 전환된다. 내가 병원을 기억하는 것이 아니라, 병원이 나를 기억한다는 확인.</div>
+          <div class="fbox-q">"원장님이 내 이름을 기억하고, 지난번 시술 어땠냐고 물어봐 주시면 기분이 달라요."</div>
+          <div class="fbox-qs">— IDI 03</div>
+          <div class="fbox-q">"상담실장님이 제 피부 상태를 진짜 잘 기억해줘요. 과하게 권유도 안 하고."</div>
+          <div class="fbox-qs">— IDI 01</div>
+          <div class="fbox-q">"선생님이 바뀌면 다 처음부터 설명해야 해요. 그게 귀찮아서 안 바꾸게 되는 것도 있어요."</div>
+          <div class="fbox-qs">— IDI 02</div>
+          <div class="fbox-src"><span class="src idi src-inv">IDI 01</span><span class="src idi src-inv">IDI 02</span><span class="src idi src-inv">IDI 03</span></div>
         </div>
       </div>
-      <div class="jstage">
-        <div class="js-num">STAGE 06</div>
-        <div class="js-title">이탈 or 락인</div>
-        <div class="js-beh">
-          <p><strong>락인:</strong> 의사 지속 + 잔여 금액권 → 강한 재방문</p>
-          <p><strong>이탈:</strong> 의사 이직·퇴사 → 즉각 이탈</p>
-          <p><strong>이탈:</strong> 카테고리 변경 → 특화 병원 탐색</p>
-          <p><strong>이탈:</strong> 과도한 업셀링 → 반감 후 이탈</p>
+
+      <!-- 05 -->
+      <div class="fstage active">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 05 · 행동으로 확정</div>
+          <div class="fbox-title">현장 즉시 예약 · 카카오 추가 · 금액권 구매</div>
+          <div class="fbox-body">인식의 전환 직후 행동으로 굳힘. 시술 직후 나가면서 다음 예약을 잡거나, 카카오채널을 추가하거나, 금액권·다회권을 구매하는 것이 외부적 확정 신호. 파트너 IDI에서도 "현장 즉시 예약 고객은 단골이 될 가능성이 높다"고 언급.</div>
+          <div class="fbox-q">"블리비 명동 원장님을 믿고 회원권 샀어요. 그 원장님이 없으면 안 가요."</div>
+          <div class="fbox-src"><span class="src idi">파트너 IDI</span><span class="src idi">IDI 03</span><span class="src fgd">FGD · Su</span></div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="fstage active">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 06 · 단골 상태</div>
+          <div class="fbox-title">플랫폼 밖에서, 조용히, 반복적으로</div>
+          <div class="fbox-body">재예약은 카카오톡·전화로. 강남언니는 포인트 쓸 때만. 새 시술이 생겨도 원장님에게 먼저 물어봄. 상담실장과의 라포가 방문마다 축적됨. 플랫폼 없이도 관계가 유지된다. 월별 시술 유저의 60~70%가 구환이며 50%는 한 달 간격으로 재방문.</div>
+          <div class="fbox-q">"강남언니 무조건 하는 이유는 포인트 때문이긴 해요. 그거 아니면 그냥 카톡으로..."</div>
+          <div class="fbox-src"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span><span class="src data">데이터 · 신구환 현황</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORK -->
+    <div class="ffork-wrap">
+      <div class="ffork-connector"></div>
+      <div class="ffork">
+        <div class="forkbox lock">
+          <h4>락인 ↓</h4>
+          <p>의사 관계 지속 + 잔여 금액권 → 강한 재방문 유지. 새 시술도 이 병원에서 해결하려는 경향이 생김.</p>
+          <div style="margin-top:12px"><span class="src idi src-inv">FGD · Rosie</span><span class="src idi src-inv">IDI 03</span></div>
+        </div>
+        <div class="forkbox exit">
+          <h4>이탈 ↗</h4>
+          <p>① 담당 의사 이직·퇴사 → 즉각 이탈<br>② 다른 카테고리 시술 → 특화 병원 탐색<br>③ 업셀링 압박 누적 → 반감 후 점진적 이탈</p>
+          <div style="margin-top:12px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div>
         </div>
       </div>
     </div>
 
-    <div class="jmap-row" style="border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;overflow:hidden">
-      <div class="jmap-cell"><div class="jmap-label">주 채널</div><p>SNS · 지인</p></div>
-      <div class="jmap-cell"><div class="jmap-label">주 채널</div><p>강남언니 앱</p></div>
-      <div class="jmap-cell"><div class="jmap-label">주 채널</div><p>강남언니 앱 · 현장</p></div>
-      <div class="jmap-cell"><div class="jmap-label">주 채널</div><p>현장 예약 · 카카오톡</p></div>
-      <div class="jmap-cell"><div class="jmap-label">주 채널</div><p>카카오톡 · 전화</p></div>
-      <div class="jmap-cell"><div class="jmap-label">주 채널</div><p>카카오톡 · 네이버</p></div>
-    </div>
-
-    <div class="jnotes">
-      <div class="jnote">
-        <h4>플랫폼 이탈 시점</h4>
-        <p>강남언니는 Stage 02~03에서만 주요 역할을 합니다. Stage 04 이후로는 카카오톡과 현장 예약이 주 채널이 되어 플랫폼에서 이탈합니다. <span class="src data">데이터</span> <span class="src idi">IDI 01</span></p>
-      </div>
-      <div class="jnote">
-        <h4>전환의 핵심 모멘트</h4>
-        <p>Stage 04의 '현장 즉시 예약'과 '금액권 구매'는 SRSU 전환의 가장 강력한 시그널입니다. 이 시점을 플랫폼이 포착할 수 있다면 강남언니 내 SRSU를 높일 수 있는 가장 큰 기회입니다. <span class="src fgd">FGD</span> <span class="src idi">IDI 03</span></p>
-      </div>
-      <div class="jnote">
-        <h4>시술별 여정 분기</h4>
-        <p>고관여 시술(리프팅·필러)은 Stage 03에서 강한 의사 평가가 발생하고, 저관여 시술(보톡스·제모)은 Stage 02에서 이미 결정이 납니다. 여정의 깊이가 다릅니다. <span class="src data">SRSU 추가분석</span></p>
-      </div>
-    </div>
   </div>
 </section>
 
