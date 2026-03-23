@@ -17,7 +17,7 @@
   --t3:#aaa;
   --black:#111;
 }
-body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
 
 /* NAV */
 nav{position:sticky;top:0;background:rgba(250,250,250,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100}
@@ -28,17 +28,17 @@ nav{position:sticky;top:0;background:rgba(250,250,250,.94);backdrop-filter:blur(
 .nav-links a:hover{color:var(--t1)}
 
 /* LAYOUT */
-.wrap{max-width:1100px;margin:0 auto;padding:0 40px}
-section{padding:60px 0;border-bottom:1px solid var(--border)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 48px}
+section{padding:64px 0;border-bottom:1px solid var(--border)}
 section:last-of-type{border-bottom:none}
 
 /* TYPE */
 .label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
-h1{font-size:48px;font-weight:700;line-height:1.12;letter-spacing:-.03em}
-h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
-h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+h1{font-size:52px;font-weight:700;line-height:1.1;letter-spacing:-.03em}
+h2{font-size:30px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+h3{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
 h4{font-size:15px;font-weight:600;margin-bottom:4px}
-.lead{font-size:16px;color:var(--t2);line-height:1.7;max-width:600px;margin-top:10px}
+.lead{font-size:17px;color:var(--t2);line-height:1.7;max-width:640px;margin-top:10px}
 .sec-head{margin-bottom:36px}
 
 /* GRID */
@@ -50,12 +50,12 @@ h4{font-size:15px;font-weight:600;margin-bottom:4px}
 .card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px}
 
 /* STAT CARDS */
-.stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:6px}
+.stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 24px;display:flex;flex-direction:column;gap:6px}
 .stat .sl{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
-.stat .sn{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--t1)}
+.stat .sn{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--t1)}
 .stat .sn.dim{color:#ccc}
-.stat .sd{font-size:12px;color:var(--t2);margin-top:2px}
-.stat .sc{font-size:11px;color:var(--t3);background:var(--bg2);padding:3px 8px;border-radius:4px;display:inline-block;width:fit-content;margin-top:2px}
+.stat .sd{font-size:13px;color:var(--t2);margin-top:4px;line-height:1.5}
+.stat .sc{font-size:11px;color:var(--t3);background:var(--bg2);padding:3px 8px;border-radius:4px;display:inline-block;width:fit-content;margin-top:4px}
 
 /* INSIGHT BOX */
 .insight{background:var(--t1);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
@@ -72,8 +72,8 @@ h4{font-size:15px;font-weight:600;margin-bottom:4px}
 .flist{display:flex;flex-direction:column;gap:8px}
 .fitem{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--white);border:1px solid var(--border);border-radius:8px}
 .ficon{width:28px;height:28px;border-radius:6px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.fitem h4{font-size:14px;font-weight:600;margin-bottom:3px}
-.fitem p{font-size:13px;color:var(--t2);line-height:1.5}
+.fitem h4{font-size:15px;font-weight:600;margin-bottom:3px}
+.fitem p{font-size:14px;color:var(--t2);line-height:1.5}
 
 /* JOURNEY */
 .journey{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
@@ -127,8 +127,8 @@ h4{font-size:15px;font-weight:600;margin-bottom:4px}
 
 /* CHART WRAPPER */
 .cw{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px}
-.ct{font-size:13px;font-weight:600;margin-bottom:3px}
-.cs{font-size:11px;color:var(--t3);margin-bottom:20px}
+.ct{font-size:14px;font-weight:600;margin-bottom:3px}
+.cs{font-size:12px;color:var(--t3);margin-bottom:20px}
 
 /* HERO META */
 .hero-meta{display:flex;gap:36px;margin-top:44px;padding-top:28px;border-top:1px solid var(--border)}
@@ -562,31 +562,47 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
       <div class="invcard hi">
         <span class="invbadge">고관여 시술</span>
         <h3>의사를 믿고 다시 온다</h3>
-        <p class="invdesc">술기와 결과가 중요하고 불가역적인 시술. SRSU의 핵심 고객군.</p>
-        <div class="alist">
-          <div class="aitem"><span class="akey">예시</span><span class="aval">리프팅, 스킨부스터, 인모드, 필러</span></div>
+        <p class="invdesc">불가역적이고 술기 차이가 큰 시술. 의사 개인에 대한 신뢰가 재방문의 핵심 동인.</p>
+        <div class="alist" style="margin-bottom:16px">
+          <div class="aitem"><span class="akey">예시</span><span class="aval">리프팅, 스킨부스터, 인모드, 필러, 코성형</span></div>
           <div class="aitem"><span class="akey">결정요인</span><span class="aval">의사의 술기 + 태도에 대한 신뢰</span></div>
-          <div class="aitem"><span class="akey">락인</span><span class="aval">의사 개인에 대한 신뢰 → 강한 재방문</span></div>
-          <div class="aitem"><span class="akey">이탈</span><span class="aval">의사 이동/퇴사, 시술 퀄리티 하락</span></div>
+          <div class="aitem"><span class="akey">락인</span><span class="aval">의사 개인 신뢰 → 강한 재방문, 패키지 선결제</span></div>
+          <div class="aitem"><span class="akey">이탈</span><span class="aval">의사 이동·퇴사, 시술 퀄리티 하락</span></div>
+        </div>
+        <div class="quote" style="margin-bottom:10px">
+          <p>"리프팅 스킬에 완전 홀딱 빠졌어요. 그 원장님이 이직하면 저도 따라가야죠."</p>
+          <span class="qs">— 내부 직원 FGD · Rosie <span class="src fgd" style="margin-left:4px">FGD · Rosie</span></span>
+        </div>
+        <div class="quote" style="margin-bottom:10px">
+          <p>"원장님이 제 피부 타입을 이미 알고 있어서 설명 없이 바로 시작할 수 있어요. 그게 편해서 계속 가요."</p>
+          <span class="qs">— <span class="src idi">IDI 02</span></span>
         </div>
         <div class="quote">
-          <p>"예전에 제가 받았던 리프팅의 스킬과 너무 다른 스킬로... 그거에 완전 홀딱 빠졌어요."</p>
-          <span class="qs">— 내부 직원 FGD, Rosie</span>
+          <p>"블리비 명동 원장님을 믿고 회원권 샀어요. 그 원장님이 없으면 안 가요."</p>
+          <span class="qs">— <span class="src idi">IDI 03</span></span>
         </div>
       </div>
       <div class="invcard lo">
         <span class="invbadge">저관여 시술</span>
         <h3>가격이 좋은 곳에 간다</h3>
-        <p class="invdesc">가역적이고 표준화된 시술. 가격이 핵심 결정 요인으로 SRSU 유인이 낮음.</p>
-        <div class="alist">
+        <p class="invdesc">가역적이고 표준화된 시술. 결과 편차가 작아 가격이 병원 선택의 핵심 기준이 됨.</p>
+        <div class="alist" style="margin-bottom:16px">
           <div class="aitem"><span class="akey">예시</span><span class="aval">보톡스, 제모 (일부)</span></div>
           <div class="aitem"><span class="akey">결정요인</span><span class="aval">가격 → 접근성 → 의사 신뢰 순</span></div>
-          <div class="aitem"><span class="akey">락인</span><span class="aval">낮음. 더 저렴한 대안 발견 시 이탈</span></div>
+          <div class="aitem"><span class="akey">락인</span><span class="aval">낮음. 더 저렴한 대안 발견 즉시 이탈</span></div>
           <div class="aitem"><span class="akey">이탈</span><span class="aval">가격 변동, 더 저렴한 병원 발견</span></div>
         </div>
+        <div class="quote" style="margin-bottom:10px">
+          <p>"보톡스는 가격이 제일 중요해요. 지불할 수 있는 맥스가 8만원이라 그 기준으로 찾아요."</p>
+          <span class="qs">— 내부 직원 FGD · Su <span class="src fgd" style="margin-left:4px">FGD · Su</span></span>
+        </div>
+        <div class="quote" style="margin-bottom:10px">
+          <p>"보톡스는 어디서 받아도 비슷해요. 그냥 가까운 데, 싼 데 가면 되죠."</p>
+          <span class="qs">— <span class="src fgd">FGD · Jace</span></span>
+        </div>
         <div class="quote">
-          <p>"보톡스는 전 가격이 제일 중요해요. 제가 지불할 수 있는 가격대가 맥스 8만원이라 가격 보고 가요."</p>
-          <span class="qs">— 내부 직원 FGD, Su</span>
+          <p>"보톡스 재방문율은 53위권에서 56%인데, 필러는 41%로 낮아요. 가격 경쟁이 심한 카테고리일수록 이탈이 높습니다."</p>
+          <span class="qs">— <span class="src data">SRSU 추가분석</span></span>
         </div>
       </div>
     </div>
@@ -632,58 +648,59 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
       <p class="lead">정량 설문과 정성 인터뷰에서 공통으로 확인된 락인 요인과 이탈 요인입니다.</p>
     </div>
 
-    <div class="g2" style="gap:28px">
-      <div>
-        <h3 style="margin-bottom:16px">락인 요인</h3>
-        <div class="flist">
-          <div class="fitem">
-            <div class="ficon">👨‍⚕️</div>
-            <div><h4>의사에 대한 신뢰 (술기 + 태도)</h4><p>고관여 시술일수록 의사 개인 의존도 높음. "꼼꼼하게 해준다"는 경험이 반복 방문의 핵심 트리거.</p><div style="margin-top:6px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div></div>
+    <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--white);margin-bottom:20px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)">
+        <div style="padding:14px 20px;border-right:1px solid var(--border);background:var(--t1)"><span style="font-size:13px;font-weight:700;color:#fff;letter-spacing:.04em">락인 요인</span></div>
+        <div style="padding:14px 20px;background:var(--bg2)"><span style="font-size:13px;font-weight:700;color:var(--t2);letter-spacing:.04em">이탈 요인</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+        <div style="border-right:1px solid var(--border)">
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t1);padding-top:1px">→</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">의사에 대한 신뢰 (술기·태도)</div><div style="font-size:14px;color:var(--t2)">고관여 시술일수록 의사 개인 의존도 높음. 꼼꼼하게 해준다는 경험이 핵심 트리거.</div><div style="margin-top:6px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div></div>
           </div>
-          <div class="fitem">
-            <div class="ficon">✨</div>
-            <div><h4>시술 결과 만족 — 1위 (31.76% KR)</h4><p>재방문 이유 1위. 효과를 경험했을 때 같은 의사·병원을 다시 찾는 패턴이 강하게 나타남.</p><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR</span></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t1);padding-top:1px">→</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">시술 결과 만족 <span style="font-weight:400;font-size:13px;color:var(--t3)">1위 31.76% KR</span></div><div style="font-size:14px;color:var(--t2)">효과를 경험했을 때 같은 의사·병원을 다시 찾는 패턴이 강하게 나타남.</div><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR</span></div></div>
           </div>
-          <div class="fitem">
-            <div class="ficon">📍</div>
-            <div><h4>접근성 — 2위 (17.32% KR / 17.58% JP)</h4><p>위치와 교통 접근성이 재방문 이유 2위. 지방 도시에서 SRSU 비중이 상대적으로 높음.</p><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR/JP</span></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t1);padding-top:1px">→</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">접근성 <span style="font-weight:400;font-size:13px;color:var(--t3)">2위 17.32% KR</span></div><div style="font-size:14px;color:var(--t2)">위치·교통 접근성. 지방 도시에서 SRSU 비중이 상대적으로 높음.</div><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR/JP</span></div></div>
           </div>
-          <div class="fitem">
-            <div class="ficon">🔄</div>
-            <div><h4>지속적 케어 니즈 — 3위 (13.91% KR)</h4><p>3개월 이내 재방문 고객에서 2배 이상 높게 나타남. "관리해야 한다"는 인식이 강한 시술군.</p><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR</span></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t1);padding-top:1px">→</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">지속적 케어 니즈 <span style="font-weight:400;font-size:13px;color:var(--t3)">3위 13.91% KR</span></div><div style="font-size:14px;color:var(--t2)">3개월 내 재방문 고객에서 2배 이상 높음. "관리해야 한다"는 인식이 강한 시술군.</div><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR</span></div></div>
           </div>
-          <div class="fitem">
-            <div class="ficon">🛡️</div>
-            <div><h4>업셀링 없는 안정적 분위기</h4><p>원하지 않는 시술 추천에 강한 거부감. 신뢰를 상업적으로 소비하는 병원에서는 이탈로 연결.</p><div style="margin-top:6px"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t1);padding-top:1px">→</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">업셀링 없는 안정적 분위기</div><div style="font-size:14px;color:var(--t2)">원하지 않는 시술 추천에 강한 거부감. 이 경험이 있는 병원은 이탈로 연결됨.</div><div style="margin-top:6px"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t3);padding-top:1px">×</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">시술 카테고리 변경</div><div style="font-size:14px;color:var(--t2)">새 시술 시도 시 해당 시술 특화 병원으로 이동. "시술마다 잘하는 병원이 따로 있어요."</div><div style="margin-top:6px"><span class="src idi">IDI 03</span><span class="src data">SRSU 추가분석</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t3);padding-top:1px">×</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">담당 의사 이동·퇴사</div><div style="font-size:14px;color:var(--t2)">병원이 아닌 의사를 신뢰했기 때문에 의사 이동 시 고객도 즉각 이탈.</div><div style="margin-top:6px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;border-bottom:1px solid var(--border);padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t3);padding-top:1px">×</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">시술·서비스 퀄리티 하락</div><div style="font-size:14px;color:var(--t2)">한 번의 나쁜 경험이 락인을 해제. 일관성 유지가 SRSU 관계의 필수 조건.</div><div style="margin-top:6px"><span class="src idi">IDI 01</span><span class="src idi">IDI 04</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto 1fr;padding:16px 20px;gap:12px;align-items:start">
+            <div style="font-size:14px;font-weight:700;color:var(--t3);padding-top:1px">×</div>
+            <div><div style="font-size:15px;font-weight:600;margin-bottom:3px">과도한 업셀링·CRM 공격</div><div style="font-size:14px;color:var(--t2)">"원하지 않는 얘기를 해주시면 반감이 돼요." 신뢰를 상업적으로 소비하는 순간 이탈.</div><div style="margin-top:6px"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span></div></div>
           </div>
         </div>
       </div>
-      <div>
-        <h3 style="margin-bottom:16px">이탈 요인</h3>
-        <div class="flist">
-          <div class="fitem">
-            <div class="ficon">🔀</div>
-            <div><h4>시술 변경</h4><p>새로운 시술을 시도할 때 해당 시술에 특화된 의사를 찾아 병원 변경. "시술마다 병원은 따로 있어요."</p><div style="margin-top:6px"><span class="src idi">IDI 03</span><span class="src data">SRSU 추가분석</span></div></div>
-          </div>
-          <div class="fitem">
-            <div class="ficon">🚪</div>
-            <div><h4>담당 의사 이동/퇴사</h4><p>병원이 아닌 의사를 신뢰했기 때문에 의사 이동 시 고객도 함께 이탈. SRSU의 핵심이 Same Hospital이 아닌 Same Doctor.</p><div style="margin-top:6px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span></div></div>
-          </div>
-          <div class="fitem">
-            <div class="ficon">📉</div>
-            <div><h4>시술/서비스 퀄리티 하락</h4><p>한 번의 나쁜 경험이 락인을 해제. 퀄리티 일관성이 SRSU 유지의 필수 조건.</p><div style="margin-top:6px"><span class="src idi">IDI 01</span><span class="src idi">IDI 04</span></div></div>
-          </div>
-          <div class="fitem">
-            <div class="ficon">📢</div>
-            <div><h4>과도한 업셀링 / CRM 공격</h4><p>"저는 그걸 원하지 않는 상태에서 어떤 얘기를 해주시면 반감이 돼요."</p><div style="margin-top:6px"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span></div></div>
-          </div>
-        </div>
-        <div class="cw" style="margin-top:20px">
-          <div class="ct">재방문 이유 Top 5 (한국 고객 설문)</div>
-          <div class="cs">동일 병원에 재방문하는 이유 기준</div>
-          <canvas id="lockChart" height="190"></canvas>
-        </div>
-      </div>
+    </div>
+
+    <div class="cw">
+      <div class="ct">재방문 이유 Top 5 (한국 고객 설문)</div>
+      <div class="cs">동일 병원에 재방문하는 이유 기준</div>
+      <canvas id="lockChart" height="130"></canvas>
     </div>
   </div>
 </section>
@@ -697,84 +714,39 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
       <p class="lead">강남언니는 탐색과 첫 예약의 장입니다. 재방문은 카카오톡과 현장 예약으로 이동합니다.</p>
     </div>
 
-    <div class="journey">
-      <div class="jstep">
-        <div class="jnum">Step 01</div>
-        <div class="jtitle">첫 탐색 · 첫 예약</div>
-        <span class="jbadge">강남언니 / SNS</span>
-        <ul class="jlist">
-          <li>지인 추천, 인플루언서 경유</li>
-          <li>가격 비교 및 이벤트 확인</li>
-          <li>후기 검증 (신뢰도 낮게 인식)</li>
-          <li>포인트 적립/사용</li>
-        </ul>
+    <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--white)">
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr;border-bottom:1px solid var(--border);background:var(--bg2)">
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"></div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"><span style="font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase">Step 01</span><div style="font-size:14px;font-weight:600;margin-top:3px">첫 탐색 · 첫 예약</div></div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"><span style="font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase">Step 02</span><div style="font-size:14px;font-weight:600;margin-top:3px">재방문 · 반복 시술</div></div>
+        <div style="padding:14px 18px"><span style="font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.08em;text-transform:uppercase">Step 03</span><div style="font-size:14px;font-weight:600;margin-top:3px">일정 변경 · QnA</div></div>
       </div>
-      <div class="jstep">
-        <div class="jnum">Step 02</div>
-        <div class="jtitle">재방문 · 반복 시술</div>
-        <span class="jbadge">카카오톡 / 현장예약</span>
-        <ul class="jlist">
-          <li>카톡: 즉시성 + 연속성 + 편의성</li>
-          <li>현장예약: 관리 명목, 시간 선점</li>
-          <li>"설명이 필요 없어 빠름"</li>
-          <li>다회권·금액권 보유 시 병원 직접</li>
-        </ul>
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+        <div style="padding:14px 18px;border-right:1px solid var(--border);font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center">채널</div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"><span class="jbadge" style="font-size:12px">강남언니 / SNS</span></div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"><span class="jbadge" style="font-size:12px">카카오톡 / 현장예약</span></div>
+        <div style="padding:14px 18px"><span class="jbadge" style="font-size:12px">카카오톡</span></div>
       </div>
-      <div class="jstep">
-        <div class="jnum">Step 03</div>
-        <div class="jtitle">일정 변경 · QnA</div>
-        <span class="jbadge">카카오톡</span>
-        <ul class="jlist">
-          <li>시술 후 주의사항 문의</li>
-          <li>예약 변경 요청</li>
-          <li>"대화가 끊기지 않는 것이 핵심"</li>
-          <li>응답 속도보다 연속성이 중요</li>
-        </ul>
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr;border-bottom:1px solid var(--border)">
+        <div style="padding:14px 18px;border-right:1px solid var(--border);font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center">행동</div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border);font-size:14px;color:var(--t2);line-height:1.6">지인 추천·인플루언서 경유<br>가격 비교 및 이벤트 확인<br>후기 검증 (신뢰도 낮게 인식)</div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border);font-size:14px;color:var(--t2);line-height:1.6">즉시성·연속성으로 카톡 선호<br>시술 직후 현장에서 바로 예약<br>다회권 보유 시 병원 직접 연락</div>
+        <div style="padding:14px 18px;font-size:14px;color:var(--t2);line-height:1.6">시술 후 주의사항 문의<br>예약 변경 요청<br>대화 맥락 연속성이 핵심</div>
+      </div>
+      <div style="display:grid;grid-template-columns:140px 1fr 1fr 1fr">
+        <div style="padding:14px 18px;border-right:1px solid var(--border);font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center">출처</div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"><span class="src idi">IDI 01</span><span class="src fgd">FGD · Jace</span><span class="src data">데이터</span></div>
+        <div style="padding:14px 18px;border-right:1px solid var(--border)"><span class="src idi">IDI 01</span><span class="src idi">IDI 03</span><span class="src fgd">FGD · Jace</span></div>
+        <div style="padding:14px 18px"><span class="src fgd">FGD · Su</span><span class="src idi">IDI 02</span></div>
       </div>
     </div>
 
-    <div class="g2" style="margin-top:20px">
-      <div class="card">
-        <h3 style="margin-bottom:16px">카카오톡이 선택받는 3가지 이유</h3>
-        <div class="flist">
-          <div class="fitem">
-            <div class="ficon">⚡</div>
-            <div><h4>즉시성</h4><p>실제 응답 리드타임과 관계없이 "바로 보낼 수 있다"는 인식 자체가 만족감을 줌. 주 사용 채널이라 상시 접근 가능.</p></div>
-          </div>
-          <div class="fitem">
-            <div class="ficon">🔗</div>
-            <div><h4>연속성</h4><p>대화 맥락이 유지됨. "응답이 얼마나 빨리 오느냐보다, 시작되면 끊이지 않는 게 좋아요." (Su, FGD)</p></div>
-          </div>
-          <div class="fitem">
-            <div class="ficon">👆</div>
-            <div><h4>편의성</h4><p>이미 익숙한 채널. 전용 예약 버튼이 있는 경우 날짜 선택만으로 예약 완결. 맥락 전환 없음.</p></div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <h3 style="margin-bottom:16px">강남언니의 현재 역할</h3>
-        <div style="display:flex;flex-direction:column;gap:0">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
-            <span style="font-size:13px">포인트 사용 / 적립</span>
-            <span class="tag dark">주 사용 이유</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
-            <span style="font-size:13px">새 시술 탐색 · 가격 비교</span>
-            <span class="tag">첫 방문 시</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
-            <span style="font-size:13px">재방문 예약</span>
-            <span class="tag">거의 미사용</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
-            <span style="font-size:13px">이력 관리 / 케어 연속성</span>
-            <span class="tag">기능 없음</span>
-          </div>
-        </div>
-        <div class="quote">
-          <p>"강남언니 무조건 하는 이유는 포인트 때문이긴 하거든요. 그거 아니면 그냥 카톡으로..."</p>
-          <span class="qs">— 내부 직원 FGD, Jace</span>
-        </div>
+    <div style="margin-top:16px" class="card">
+      <h3 style="margin-bottom:14px">카카오톡이 선택받는 이유</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+        <div><h4 style="margin-bottom:4px">⚡ 즉시성</h4><p style="font-size:14px;color:var(--t2)">실제 응답 속도와 무관하게 "바로 보낼 수 있다"는 인식 자체가 만족감. 상시 접근 가능.</p></div>
+        <div><h4 style="margin-bottom:4px">🔗 연속성</h4><p style="font-size:14px;color:var(--t2)">대화 맥락이 유지됨. "응답이 빠른 것보다, 대화가 끊이지 않는 게 좋아요." <span class="src fgd">FGD · Su</span></p></div>
+        <div><h4 style="margin-bottom:4px">👆 편의성</h4><p style="font-size:14px;color:var(--t2)">이미 익숙한 채널. 전용 예약 버튼 있으면 날짜 선택만으로 완결. 맥락 전환 없음.</p></div>
       </div>
     </div>
   </div>
