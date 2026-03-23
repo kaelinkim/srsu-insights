@@ -147,12 +147,45 @@ footer p{font-size:11px;color:var(--t3)}
 
 hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 
+/* TOOLTIP */
+.tip-wrap{position:relative;display:inline-flex;align-items:center;cursor:help}
+.tip-wrap::after{content:attr(data-tip);position:absolute;bottom:calc(100%+8px);left:50%;transform:translateX(-50%);background:var(--t1);color:#fff;font-size:11px;line-height:1.4;padding:7px 11px;border-radius:7px;white-space:nowrap;z-index:200;pointer-events:none;opacity:0;transition:opacity .15s;max-width:260px;white-space:normal;text-align:center}
+.tip-wrap::before{content:'';position:absolute;bottom:calc(100%+3px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--t1);opacity:0;transition:opacity .15s;z-index:200}
+.tip-wrap:hover::after,.tip-wrap:hover::before{opacity:1}
+/* VIZ FLOWCHART */
+.viz{margin-bottom:52px}
+.viz-row{display:grid;align-items:stretch;gap:0}
+.viz-row.r4{grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr}
+.viz-row.r2{grid-template-columns:1fr 32px 1fr;max-width:52%;margin:0 auto}
+.viz-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:5px}
+.viz-card.muted{background:var(--bg);border-color:var(--border)}
+.viz-card.warn{background:var(--bg2);border-style:dashed}
+.viz-step{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+.viz-title{font-size:14px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.viz-sub{font-size:12px;color:var(--t2);line-height:1.45;margin-top:2px}
+.viz-sub.warn{color:var(--t3);font-style:italic}
+.viz-harr{display:flex;align-items:center;justify-content:center;color:var(--border);font-size:18px;font-weight:300}
+.viz-darr{height:36px;display:flex;align-items:center;color:var(--t3);font-size:16px}
+.viz-darr.right{justify-content:flex-end}
+.viz-darr.center{justify-content:center}
+.viz-pivot{background:var(--t1);border-radius:12px;padding:28px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.viz-pivot-badge{font-size:11px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.5);text-transform:uppercase;padding:4px 12px;border:1px solid rgba(255,255,255,.2);border-radius:100px;display:inline-block;margin-bottom:4px}
+.viz-pivot-title{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em}
+.viz-pivot-sub{font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:520px}
+.viz-fork{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:52%;margin:0 auto}
+.viz-fbox{border-radius:10px;padding:18px 20px;border:1px solid var(--border)}
+.viz-fbox h5{font-size:14px;font-weight:700;margin-bottom:5px}
+.viz-fbox p{font-size:13px;line-height:1.55;color:var(--t2)}
+.viz-fbox.lock{background:var(--t1);border-color:var(--t1)}
+.viz-fbox.lock h5{color:#fff}
+.viz-fbox.lock p{color:rgba(255,255,255,.68)}
+
 /* RIGHT TOC */
 .rtoc{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
 .rtoc-item{display:flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
 .rtoc-dot{width:5px;height:5px;border-radius:50%;background:var(--t3);flex-shrink:0;transition:all .2s}
-.rtoc-label{font-size:11px;color:var(--t2);white-space:nowrap;opacity:0;transition:opacity .15s;background:var(--white);padding:3px 8px;border-radius:4px;border:1px solid var(--border)}
-.rtoc-item:hover .rtoc-label,.rtoc-item.active .rtoc-label{opacity:1}
+.rtoc-label{font-size:11px;color:var(--t2);white-space:nowrap;background:var(--white);padding:3px 8px;border-radius:4px;border:1px solid var(--border)}
+.rtoc-item.active .rtoc-label{color:var(--t1);font-weight:600}
 .rtoc-item.active .rtoc-dot{background:var(--t1);width:6px;height:6px}
 .rtoc-item:hover .rtoc-dot{background:var(--t2)}
 @media(max-width:1300px){.rtoc{display:none}}
@@ -227,17 +260,16 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 .forkbox.lock h4{color:#fff}
 
 @media(max-width:768px){
-  .jmap,.jmap-row{grid-template-columns:1fr}
-  .jstage{border-right:none;border-bottom:1px solid var(--border)}
-  .jmap-cell{border-right:none;border-bottom:1px solid var(--border)}
-  .jnotes{grid-template-columns:1fr}
-}
   .wrap{padding:0 20px}
   h1{font-size:32px}
   h2{font-size:22px}
   .g4,.g3,.g2{grid-template-columns:1fr}
-  .pgrid,.journey,.invgrid,.ogrid{grid-template-columns:1fr}
+  .pgrid,.journey,.invgrid,.ogrid,.ffork,.viz-fork{grid-template-columns:1fr}
   .nav-links{display:none}
+  .viz-row.r4{grid-template-columns:1fr}
+  .viz-harr{display:none}
+  .viz-row.r2{max-width:100%}
+  .viz-fork{max-width:100%}
 }
 </style>
 </head>
@@ -245,13 +277,12 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 
 <div class="rtoc" id="rtoc">
   <a class="rtoc-item" href="#insights"><span class="rtoc-label">핵심 인사이트</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#journey"><span class="rtoc-label">단골 여정</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#overview"><span class="rtoc-label">현황 갭</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#profile"><span class="rtoc-label">고객 이해</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#lockin"><span class="rtoc-label">재방문 요인</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#channel"><span class="rtoc-label">예약 채널</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#painpoints"><span class="rtoc-label">페인포인트</span><span class="rtoc-dot"></span></a>
-  <a class="rtoc-item" href="#compare"><span class="rtoc-label">한일 비교</span><span class="rtoc-dot"></span></a>
-  <a class="rtoc-item" href="#journey"><span class="rtoc-label">단골 여정</span><span class="rtoc-dot"></span></a>
   <a class="rtoc-item" href="#opportunity"><span class="rtoc-label">기회 영역</span><span class="rtoc-dot"></span></a>
 </div>
 
@@ -260,12 +291,12 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
     <span class="nav-logo">SRSU Research</span>
     <ul class="nav-links">
       <li><a href="#insights">핵심 인사이트</a></li>
+      <li><a href="#journey">여정맵</a></li>
       <li><a href="#overview">현황 갭</a></li>
       <li><a href="#profile">고객 이해</a></li>
       <li><a href="#lockin">재방문 요인</a></li>
       <li><a href="#channel">예약 채널</a></li>
       <li><a href="#painpoints">페인포인트</a></li>
-      <li><a href="#journey">여정맵</a></li>
       <li><a href="#opportunity">기회 영역</a></li>
     </ul>
   </div>
@@ -506,6 +537,192 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
   </div>
 </section>
 
+<!-- JOURNEY MAP -->
+<section id="journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">고객 여정</div>
+      <h2>단골이 되는 순간까지</h2>
+      <p class="lead">결과가 좋다고 단골이 되지 않습니다. <strong>"내가 기억받는 경험"</strong>이 일어나는 순간, 관계가 전환됩니다.</p>
+    </div>
+
+    <div class="viz">
+      <!-- Row 1: Pre-pivot -->
+      <div class="viz-row r4">
+        <div class="viz-card muted">
+          <span class="viz-step">01</span>
+          <span class="viz-title">시술 관심 발생</span>
+          <span class="viz-sub">지인 추천 · SNS · 검색</span>
+        </div>
+        <div class="viz-harr">→</div>
+        <div class="viz-card muted">
+          <span class="viz-step">02</span>
+          <span class="viz-title">병원 탐색</span>
+          <span class="viz-sub">강남언니 가격·이벤트 비교</span>
+        </div>
+        <div class="viz-harr">→</div>
+        <div class="viz-card muted">
+          <span class="viz-step">03</span>
+          <span class="viz-title">첫 방문</span>
+          <span class="viz-sub">의사·환경·술기 평가</span>
+        </div>
+        <div class="viz-harr">→</div>
+        <div class="viz-card warn">
+          <span class="viz-step">04</span>
+          <span class="viz-title">결과 만족</span>
+          <span class="viz-sub warn">아직 단골 아님 — 관계가 없다</span>
+        </div>
+      </div>
+      <!-- Down-right arrow -->
+      <div class="viz-darr right">↓</div>
+      <!-- Pivot -->
+      <div class="viz-pivot">
+        <span class="viz-pivot-badge">✦ 전환점</span>
+        <span class="viz-pivot-title">"내가 기억받는 경험"</span>
+        <span class="viz-pivot-sub">원장님이 내 이름을 기억하고, 지난번 시술 어땠냐고 물어볼 때. 내가 병원을 기억하는 것이 아니라, 병원이 나를 기억하는 순간. 관계가 상호적으로 전환된다.</span>
+      </div>
+      <!-- Down-center arrow -->
+      <div class="viz-darr center">↓</div>
+      <!-- Row 2: Post-pivot -->
+      <div class="viz-row r2">
+        <div class="viz-card">
+          <span class="viz-step">05</span>
+          <span class="viz-title">행동으로 확정</span>
+          <span class="viz-sub">현장 즉시 예약 · 카카오 추가 · 금액권 구매</span>
+        </div>
+        <div class="viz-harr">→</div>
+        <div class="viz-card">
+          <span class="viz-step">06</span>
+          <span class="viz-title">단골 상태</span>
+          <span class="viz-sub">카카오톡 · 플랫폼 밖 반복 방문</span>
+        </div>
+      </div>
+      <!-- Fork arrow -->
+      <div class="viz-darr center">↓</div>
+      <!-- Fork -->
+      <div class="viz-fork">
+        <div class="viz-fbox lock">
+          <h5>락인</h5>
+          <p>의사 관계 지속 + 잔여 금액권 → 강한 재방문 유지</p>
+        </div>
+        <div class="viz-fbox">
+          <h5>이탈</h5>
+          <p>의사 이직 / 카테고리 변경 / 업셀링 압박</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fmap">
+
+      <!-- 01 -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 01 · 시술 관심 발생</div>
+          <div class="fbox-title">지인 추천 or SNS에서 시작</div>
+          <div class="fbox-body">FGD 참여자 및 IDI 고객 모두 첫 방문 계기로 지인 추천 또는 SNS 경유를 언급. 다만 이는 리서치 참여자 특성에 따른 한계가 있어 일반화에 주의가 필요. 강남언니는 이후 가격 비교·이벤트 확인 용도로 활용.</div>
+          <div class="fbox-src"><span class="src fgd">FGD · Rosie</span><span class="src fgd">FGD · Su</span><span class="src idi">IDI 01</span></div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 02 · 병원 탐색 & 첫 예약</div>
+          <div class="fbox-title">강남언니에서 가격·이벤트 확인 및 병원 탐색</div>
+          <div class="fbox-body">이벤트 가격 비교 및 후기 검토. 후기는 어뷰징 의심으로 신뢰도 낮게 인식, 결국 지인에게 재확인 후 결정. 첫 예약 경로는 개인마다 다양(강남언니·전화·네이버 등)하여 일반화하기 어려움. 탐색 단계에서 강남언니가 가장 적극적으로 활용되는 것은 공통적.</div>
+          <div class="fbox-src"><span class="src idi">IDI 01</span><span class="src fgd">FGD · Jace</span><span class="src data">데이터 · 신구환 현황</span></div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 03 · 첫 방문</div>
+          <div class="fbox-title">의사를 테스트하는 시간</div>
+          <div class="fbox-body">상담실장의 분위기, 의사의 술기와 태도, 업셀링 여부를 온몸으로 평가. 고관여 시술일수록 이 평가가 깊고 섬세하게 이뤄짐. 시술 결과가 기대 이상이면 "다음에 또 올까?" 수준까지 올라옴.</div>
+          <div class="fbox-q">"꼼꼼하게 해줬어요. 뭘 어떻게 할 건지 설명도 많이 해주고."</div>
+          <div class="fbox-src"><span class="src idi">IDI 01</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div>
+        </div>
+      </div>
+
+      <!-- 04 - pre-pivot, dashed -->
+      <div class="fstage">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox dashed">
+          <div class="fbox-num">Stage 04 · 결과 만족 — 아직 단골이 아님</div>
+          <div class="fbox-title">"또 올까?" 수준. 관계는 아직 없다</div>
+          <div class="fbox-body">시술 결과 만족이 재방문 이유 1위(31.76% KR)이지만, 이건 재방문 의향이지 단골 전환이 아님. 내가 병원을 기억하는 것이지, 병원은 아직 나를 모른다. 이 단계에서 관계는 여전히 일방적이다.</div>
+          <div class="fbox-src"><span class="src survey">고객 설문 1차 · KR</span></div>
+        </div>
+      </div>
+
+      <!-- PIVOT -->
+      <div class="fstage pivot">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="pivot-tag">✦ 전환점</div>
+          <div class="fbox-num">결정적 순간</div>
+          <div class="fbox-title">"내가 기억받는 경험"</div>
+          <div class="fbox-body">원장님이 내 이름을 기억하거나, 지난 시술 결과를 먼저 물어봐 줄 때. 상담실장이 내 피부 상태를 먼저 꺼낼 때. 이 순간 "나는 여기 고객이다"라는 감각이 생기며 관계가 상호적으로 전환된다. 내가 병원을 기억하는 것이 아니라, 병원이 나를 기억한다는 확인.</div>
+          <div class="fbox-q">"원장님이 내 이름을 기억하고, 지난번 시술 어땠냐고 물어봐 주시면 기분이 달라요."</div>
+          <div class="fbox-qs">— IDI 03</div>
+          <div class="fbox-q">"상담실장님이 제 피부 상태를 진짜 잘 기억해줘요. 과하게 권유도 안 하고."</div>
+          <div class="fbox-qs">— IDI 01</div>
+          <div class="fbox-q">"선생님이 바뀌면 다 처음부터 설명해야 해요. 그게 귀찮아서 안 바꾸게 되는 것도 있어요."</div>
+          <div class="fbox-qs">— IDI 02</div>
+          <div class="fbox-src"><span class="src idi src-inv">IDI 01</span><span class="src idi src-inv">IDI 02</span><span class="src idi src-inv">IDI 03</span></div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="fstage active">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 05 · 행동으로 확정</div>
+          <div class="fbox-title">현장 즉시 예약 · 카카오 추가 · 금액권 구매</div>
+          <div class="fbox-body">인식의 전환 직후 행동으로 굳힘. 시술 직후 나가면서 다음 예약을 잡거나, 카카오채널을 추가하거나, 금액권·다회권을 구매하는 것이 외부적 확정 신호. 파트너 IDI에서도 "현장 즉시 예약 고객은 단골이 될 가능성이 높다"고 언급.</div>
+          <div class="fbox-q">"블리비 명동 원장님을 믿고 회원권 샀어요. 그 원장님이 없으면 안 가요."</div>
+          <div class="fbox-src"><span class="src idi">파트너 IDI</span><span class="src idi">IDI 03</span><span class="src fgd">FGD · Su</span></div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="fstage active">
+        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
+        <div class="fbox">
+          <div class="fbox-num">Stage 06 · 단골 상태</div>
+          <div class="fbox-title">플랫폼 밖에서, 조용히, 반복적으로</div>
+          <div class="fbox-body">재예약은 카카오톡·전화로. 강남언니는 포인트 쓸 때만. 새 시술이 생겨도 원장님에게 먼저 물어봄. 상담실장과의 라포가 방문마다 축적됨. 플랫폼 없이도 관계가 유지된다. 월별 시술 유저의 60~70%가 구환이며 50%는 한 달 간격으로 재방문.</div>
+          <div class="fbox-q">"강남언니 무조건 하는 이유는 포인트 때문이긴 해요. 그거 아니면 그냥 카톡으로..."</div>
+          <div class="fbox-src"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span><span class="src data">데이터 · 신구환 현황</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORK -->
+    <div class="ffork-wrap">
+      <div class="ffork-connector"></div>
+      <div class="ffork">
+        <div class="forkbox lock">
+          <h4>락인 ↓</h4>
+          <p>의사 관계 지속 + 잔여 금액권 → 강한 재방문 유지. 새 시술도 이 병원에서 해결하려는 경향이 생김.</p>
+          <div style="margin-top:12px"><span class="src idi src-inv">FGD · Rosie</span><span class="src idi src-inv">IDI 03</span></div>
+        </div>
+        <div class="forkbox exit">
+          <h4>이탈 ↗</h4>
+          <p>① 담당 의사 이직·퇴사 → 즉각 이탈<br>② 다른 카테고리 시술 → 특화 병원 탐색<br>③ 업셀링 압박 누적 → 반감 후 점진적 이탈</p>
+          <div style="margin-top:12px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- OVERVIEW -->
 <section id="overview">
   <div class="wrap">
@@ -528,12 +745,12 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
         <span class="sc">갭 51%p</span>
       </div>
       <div class="stat">
-        <span class="sl">병원 자체 CRM ROAS</span>
+        <span class="sl"><span class="tip-wrap" data-tip="Return on Ad Spend. 광고비 대비 수익률. 3,000%는 광고비 1원당 30원의 매출 의미.">병원 자체 CRM ROAS ⓘ</span></span>
         <span class="sn">3,000%</span>
         <span class="sd">병원이 카톡·문자로 구환 유치 시 광고 수익률 (중앙값 추정)</span>
       </div>
       <div class="stat">
-        <span class="sl">강남언니 구환 ROAS</span>
+        <span class="sl"><span class="tip-wrap" data-tip="Return on Ad Spend. 광고비 대비 수익률. 강남언니 통해 구환 유치 시 병원 입장 광고 수익률.">강남언니 구환 ROAS ⓘ</span></span>
         <span class="sn dim">280%</span>
         <span class="sd">강남언니를 통한 구환 유치 시 병원 입장 광고 수익률</span>
         <span class="sc">약 11배 차이</span>
@@ -826,54 +1043,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
   </div>
 </section>
 
-<!-- COMPARE -->
-<section id="compare" style="background:var(--white)">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="label">한일 비교</div>
-      <h2>한국과 일본의 재방문 패턴 차이</h2>
-      <p class="lead">두 시장은 재방문 동기와 망설임 이유에서 의미 있는 차이를 보입니다.</p>
-    </div>
-
-    <div class="g2" style="margin-bottom:20px">
-      <div class="cw">
-        <div class="ct">재방문을 망설이는 이유</div>
-        <div class="cs">병원 설문 응답 기준 (한국 vs 일본)</div>
-        <canvas id="hesChart" height="250"></canvas>
-      </div>
-      <div class="cw">
-        <div class="ct">신규 vs 기존 고객 유치 노력 비중</div>
-        <div class="cs">한국 vs 일본 클리닉 응답</div>
-        <canvas id="effortChart" height="250"></canvas>
-      </div>
-    </div>
-
-    <div class="g3" style="margin-bottom:20px">
-      <div class="card">
-        <div class="label" style="margin-bottom:10px">차이점 1</div>
-        <h3>가격 민감도 일본 ＞ 한국</h3>
-        <p style="font-size:13px;color:var(--t2);margin-top:8px;line-height:1.65">일본의 재방문 망설임 이유 중 '혜택/가격 부족'이 56.6%로 압도적. 한국(33.3%)의 1.7배. 일본 고객은 특가·재방문 혜택에 더 민감하게 반응.</p>
-      </div>
-      <div class="card">
-        <div class="label" style="margin-bottom:10px">차이점 2</div>
-        <h3>서비스 친절도 일본 ＞ 한국</h3>
-        <p style="font-size:13px;color:var(--t2);margin-top:8px;line-height:1.65">재방문 이유 중 '서비스/응대 만족'이 일본 3위(16.97%) vs 한국 7위(8.01%). 일본 고객에게는 접근성만큼 직원 친절함이 중요.</p>
-      </div>
-      <div class="card">
-        <div class="label" style="margin-bottom:10px">차이점 3</div>
-        <h3>의사 지정 선호 한국 ＞ 일본</h3>
-        <p style="font-size:13px;color:var(--t2);margin-top:8px;line-height:1.65">'원하는 의사 지정 어려움' 한국 3위(15.7%) vs 일본 5위(4.8%). 한국은 Same Doctor, 일본은 Same Hospital 경향이 강함.</p>
-      </div>
-    </div>
-
-    <div class="cw">
-      <div class="ct">GN 앱에서 재예약하는 이유 (한국 vs 일본)</div>
-      <div class="cs">강남언니 앱 이용 고객 설문 기준</div>
-      <canvas id="rebookChart" height="170"></canvas>
-    </div>
-  </div>
-</section>
-
 <!-- HOSPITAL -->
 <section>
   <div class="wrap">
@@ -938,126 +1107,6 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- JOURNEY MAP -->
-<section id="journey">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="label">고객 여정</div>
-      <h2>단골이 되는 순간까지</h2>
-      <p class="lead">결과가 좋다고 단골이 되지 않습니다. <strong>"내가 기억받는 경험"</strong>이 일어나는 순간, 관계가 전환됩니다.</p>
-    </div>
-
-    <div class="fmap">
-
-      <!-- 01 -->
-      <div class="fstage">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox">
-          <div class="fbox-num">Stage 01 · 시술 관심 발생</div>
-          <div class="fbox-title">지인 추천 or SNS에서 시작</div>
-          <div class="fbox-body">특정 시술에 관심이 생기는 계기는 주로 지인의 말 한마디. "거기서 했는데 원장님이 진짜 꼼꼼해"가 가장 강력한 트리거. 강남언니는 그 이후 병원 이름을 재확인하거나 가격을 비교하는 용도로 사용.</div>
-          <div class="fbox-src"><span class="src fgd">FGD · Rosie</span><span class="src fgd">FGD · Su</span><span class="src idi">IDI 01</span></div>
-        </div>
-      </div>
-
-      <!-- 02 -->
-      <div class="fstage">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox">
-          <div class="fbox-num">Stage 02 · 병원 탐색 & 첫 예약</div>
-          <div class="fbox-title">강남언니에서 가격·이벤트 확인, 앱으로 첫 예약</div>
-          <div class="fbox-body">플랫폼에서 이벤트 가격 비교. 후기는 어뷰징 의심으로 신뢰도 낮게 인식. 결국 지인에게 재확인 후 결정. 첫 예약은 강남언니 앱으로. 강남언니가 가장 적극적으로 쓰이는 유일한 구간.</div>
-          <div class="fbox-src"><span class="src idi">IDI 01</span><span class="src fgd">FGD · Jace</span><span class="src data">데이터 · 신구환 현황</span></div>
-        </div>
-      </div>
-
-      <!-- 03 -->
-      <div class="fstage">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox">
-          <div class="fbox-num">Stage 03 · 첫 방문</div>
-          <div class="fbox-title">의사를 테스트하는 시간</div>
-          <div class="fbox-body">상담실장의 분위기, 의사의 술기와 태도, 업셀링 여부를 온몸으로 평가. 고관여 시술일수록 이 평가가 깊고 섬세하게 이뤄짐. 시술 결과가 기대 이상이면 "다음에 또 올까?" 수준까지 올라옴.</div>
-          <div class="fbox-q">"꼼꼼하게 해줬어요. 뭘 어떻게 할 건지 설명도 많이 해주고."</div>
-          <div class="fbox-src"><span class="src idi">IDI 01</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div>
-        </div>
-      </div>
-
-      <!-- 04 - pre-pivot, dashed -->
-      <div class="fstage">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox dashed">
-          <div class="fbox-num">Stage 04 · 결과 만족 — 아직 단골이 아님</div>
-          <div class="fbox-title">"또 올까?" 수준. 관계는 아직 없다</div>
-          <div class="fbox-body">시술 결과 만족이 재방문 이유 1위(31.76% KR)이지만, 이건 재방문 의향이지 단골 전환이 아님. 내가 병원을 기억하는 것이지, 병원은 아직 나를 모른다. 이 단계에서 관계는 여전히 일방적이다.</div>
-          <div class="fbox-src"><span class="src survey">고객 설문 1차 · KR</span></div>
-        </div>
-      </div>
-
-      <!-- PIVOT -->
-      <div class="fstage pivot">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox">
-          <div class="pivot-tag">✦ 전환점</div>
-          <div class="fbox-num">결정적 순간</div>
-          <div class="fbox-title">"내가 기억받는 경험"</div>
-          <div class="fbox-body">원장님이 내 이름을 기억하거나, 지난 시술 결과를 먼저 물어봐 줄 때. 상담실장이 내 피부 상태를 먼저 꺼낼 때. 이 순간 "나는 여기 고객이다"라는 감각이 생기며 관계가 상호적으로 전환된다. 내가 병원을 기억하는 것이 아니라, 병원이 나를 기억한다는 확인.</div>
-          <div class="fbox-q">"원장님이 내 이름을 기억하고, 지난번 시술 어땠냐고 물어봐 주시면 기분이 달라요."</div>
-          <div class="fbox-qs">— IDI 03</div>
-          <div class="fbox-q">"상담실장님이 제 피부 상태를 진짜 잘 기억해줘요. 과하게 권유도 안 하고."</div>
-          <div class="fbox-qs">— IDI 01</div>
-          <div class="fbox-q">"선생님이 바뀌면 다 처음부터 설명해야 해요. 그게 귀찮아서 안 바꾸게 되는 것도 있어요."</div>
-          <div class="fbox-qs">— IDI 02</div>
-          <div class="fbox-src"><span class="src idi src-inv">IDI 01</span><span class="src idi src-inv">IDI 02</span><span class="src idi src-inv">IDI 03</span></div>
-        </div>
-      </div>
-
-      <!-- 05 -->
-      <div class="fstage active">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox">
-          <div class="fbox-num">Stage 05 · 행동으로 확정</div>
-          <div class="fbox-title">현장 즉시 예약 · 카카오 추가 · 금액권 구매</div>
-          <div class="fbox-body">인식의 전환 직후 행동으로 굳힘. 시술 직후 나가면서 다음 예약을 잡거나, 카카오채널을 추가하거나, 금액권·다회권을 구매하는 것이 외부적 확정 신호. 파트너 IDI에서도 "현장 즉시 예약 고객은 단골이 될 가능성이 높다"고 언급.</div>
-          <div class="fbox-q">"블리비 명동 원장님을 믿고 회원권 샀어요. 그 원장님이 없으면 안 가요."</div>
-          <div class="fbox-src"><span class="src idi">파트너 IDI</span><span class="src idi">IDI 03</span><span class="src fgd">FGD · Su</span></div>
-        </div>
-      </div>
-
-      <!-- 06 -->
-      <div class="fstage active">
-        <div class="fstage-l"><div class="fdot"></div><div class="fconn"></div></div>
-        <div class="fbox">
-          <div class="fbox-num">Stage 06 · 단골 상태</div>
-          <div class="fbox-title">플랫폼 밖에서, 조용히, 반복적으로</div>
-          <div class="fbox-body">재예약은 카카오톡·전화로. 강남언니는 포인트 쓸 때만. 새 시술이 생겨도 원장님에게 먼저 물어봄. 상담실장과의 라포가 방문마다 축적됨. 플랫폼 없이도 관계가 유지된다. 월별 시술 유저의 60~70%가 구환이며 50%는 한 달 간격으로 재방문.</div>
-          <div class="fbox-q">"강남언니 무조건 하는 이유는 포인트 때문이긴 해요. 그거 아니면 그냥 카톡으로..."</div>
-          <div class="fbox-src"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span><span class="src data">데이터 · 신구환 현황</span></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- FORK -->
-    <div class="ffork-wrap">
-      <div class="ffork-connector"></div>
-      <div class="ffork">
-        <div class="forkbox lock">
-          <h4>락인 ↓</h4>
-          <p>의사 관계 지속 + 잔여 금액권 → 강한 재방문 유지. 새 시술도 이 병원에서 해결하려는 경향이 생김.</p>
-          <div style="margin-top:12px"><span class="src idi src-inv">FGD · Rosie</span><span class="src idi src-inv">IDI 03</span></div>
-        </div>
-        <div class="forkbox exit">
-          <h4>이탈 ↗</h4>
-          <p>① 담당 의사 이직·퇴사 → 즉각 이탈<br>② 다른 카테고리 시술 → 특화 병원 탐색<br>③ 업셀링 압박 누적 → 반감 후 점진적 이탈</p>
-          <div style="margin-top:12px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1142,7 +1191,7 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 <script>
 // Right TOC scroll spy
 const tocItems=document.querySelectorAll('.rtoc-item');
-const sections=['insights','overview','profile','lockin','channel','painpoints','compare','journey','opportunity'];
+const sections=['insights','journey','overview','profile','lockin','channel','painpoints','hospital','opportunity'];
 function updateToc(){
   let current='insights';
   sections.forEach(id=>{
