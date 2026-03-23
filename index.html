@@ -17,7 +17,7 @@
   --t3:#aaa;
   --black:#111;
 }
-body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased}
 
 /* NAV */
 nav{position:sticky;top:0;background:rgba(250,250,250,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100}
@@ -28,18 +28,18 @@ nav{position:sticky;top:0;background:rgba(250,250,250,.94);backdrop-filter:blur(
 .nav-links a:hover{color:var(--t1)}
 
 /* LAYOUT */
-.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
-section{padding:72px 0;border-bottom:1px solid var(--border)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 40px}
+section{padding:60px 0;border-bottom:1px solid var(--border)}
 section:last-of-type{border-bottom:none}
 
 /* TYPE */
 .label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
-h1{font-size:50px;font-weight:700;line-height:1.12;letter-spacing:-.03em}
-h2{font-size:30px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
-h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
-h4{font-size:14px;font-weight:600;margin-bottom:4px}
-.lead{font-size:16px;color:var(--t2);line-height:1.75;max-width:620px;margin-top:12px}
-.sec-head{margin-bottom:44px}
+h1{font-size:48px;font-weight:700;line-height:1.12;letter-spacing:-.03em}
+h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.lead{font-size:16px;color:var(--t2);line-height:1.7;max-width:600px;margin-top:10px}
+.sec-head{margin-bottom:36px}
 
 /* GRID */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -65,15 +65,15 @@ h4{font-size:14px;font-weight:600;margin-bottom:4px}
 
 /* QUOTE */
 .quote{background:var(--bg2);border-left:2px solid var(--t1);padding:14px 18px;border-radius:0 8px 8px 0;margin-top:14px}
-.quote p{font-size:13px;color:var(--t2);font-style:italic;line-height:1.65}
-.quote .qs{font-size:11px;color:var(--t3);margin-top:6px;font-style:normal}
+.quote p{font-size:14px;color:var(--t2);font-style:italic;line-height:1.65}
+.quote .qs{font-size:12px;color:var(--t3);margin-top:6px;font-style:normal}
 
 /* FACTOR LIST */
-.flist{display:flex;flex-direction:column;gap:10px}
-.fitem{display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--white);border:1px solid var(--border);border-radius:8px}
-.ficon{width:30px;height:30px;border-radius:7px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.fitem h4{font-size:13px;font-weight:600;margin-bottom:3px}
-.fitem p{font-size:12px;color:var(--t2);line-height:1.5}
+.flist{display:flex;flex-direction:column;gap:8px}
+.fitem{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--white);border:1px solid var(--border);border-radius:8px}
+.ficon{width:28px;height:28px;border-radius:6px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.fitem h4{font-size:14px;font-weight:600;margin-bottom:3px}
+.fitem p{font-size:13px;color:var(--t2);line-height:1.5}
 
 /* JOURNEY */
 .journey{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
@@ -83,15 +83,15 @@ h4{font-size:14px;font-weight:600;margin-bottom:4px}
 .jtitle{font-size:15px;font-weight:600;margin-bottom:12px}
 .jbadge{display:inline-flex;padding:3px 10px;background:var(--t1);color:#fff;border-radius:100px;font-size:11px;font-weight:500;margin-bottom:12px}
 .jlist{list-style:none;display:flex;flex-direction:column;gap:5px}
-.jlist li{font-size:12px;color:var(--t2);padding-left:12px;position:relative}
+.jlist li{font-size:13px;color:var(--t2);padding-left:12px;position:relative}
 .jlist li::before{content:'—';position:absolute;left:0;color:var(--t3);font-size:10px;top:2px}
 
 /* PAIN CARDS */
 .pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .pcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px}
 .pnum{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.1em;margin-bottom:10px}
-.pcard h4{font-size:14px;font-weight:600;margin-bottom:8px}
-.pcard p{font-size:12px;color:var(--t2);line-height:1.6}
+.pcard h4{font-size:15px;font-weight:600;margin-bottom:8px}
+.pcard p{font-size:13px;color:var(--t2);line-height:1.6}
 
 /* INVOLVEMENT */
 .invgrid{display:grid;grid-template-columns:1fr 1fr;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
@@ -101,11 +101,11 @@ h4{font-size:14px;font-weight:600;margin-bottom:4px}
 .invcard.hi .invbadge{background:var(--t1);color:#fff}
 .invcard.lo .invbadge{background:var(--border);color:var(--t2)}
 .invcard h3{font-size:18px;margin-bottom:6px}
-.invdesc{font-size:13px;color:var(--t2);margin-bottom:18px}
+.invdesc{font-size:14px;color:var(--t2);margin-bottom:18px}
 .alist{display:flex;flex-direction:column;gap:7px}
 .aitem{display:flex;gap:10px;align-items:flex-start}
-.akey{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);min-width:52px;padding-top:2px;flex-shrink:0}
-.aval{font-size:12px;color:var(--t2)}
+.akey{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);min-width:52px;padding-top:2px;flex-shrink:0}
+.aval{font-size:13px;color:var(--t2)}
 
 /* TABLE */
 .rtable{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:13px}
@@ -146,6 +146,16 @@ footer p{font-size:11px;color:var(--t3)}
 .mlist li::before{content:'—';position:absolute;left:0;color:var(--t3);font-size:10px;top:3px}
 
 hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
+
+/* RIGHT TOC */
+.rtoc{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.rtoc-item{display:flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
+.rtoc-dot{width:5px;height:5px;border-radius:50%;background:var(--t3);flex-shrink:0;transition:all .2s}
+.rtoc-label{font-size:11px;color:var(--t2);white-space:nowrap;opacity:0;transition:opacity .15s;background:var(--white);padding:3px 8px;border-radius:4px;border:1px solid var(--border)}
+.rtoc-item:hover .rtoc-label,.rtoc-item.active .rtoc-label{opacity:1}
+.rtoc-item.active .rtoc-dot{background:var(--t1);width:6px;height:6px}
+.rtoc-item:hover .rtoc-dot{background:var(--t2)}
+@media(max-width:1300px){.rtoc{display:none}}
 
 /* SOURCE TAGS */
 .src{display:inline-flex;align-items:center;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.04em;margin:0 2px 4px}
@@ -208,6 +218,18 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 </style>
 </head>
 <body>
+
+<div class="rtoc" id="rtoc">
+  <a class="rtoc-item" href="#insights"><span class="rtoc-label">핵심 인사이트</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#overview"><span class="rtoc-label">현황 갭</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#profile"><span class="rtoc-label">고객 이해</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#lockin"><span class="rtoc-label">재방문 요인</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#channel"><span class="rtoc-label">예약 채널</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#painpoints"><span class="rtoc-label">페인포인트</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#compare"><span class="rtoc-label">한일 비교</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#journey"><span class="rtoc-label">고객 여정맵</span><span class="rtoc-dot"></span></a>
+  <a class="rtoc-item" href="#opportunity"><span class="rtoc-label">기회 영역</span><span class="rtoc-dot"></span></a>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -500,21 +522,21 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
         <div class="cs">리얼월드(실제 병원 데이터) vs 강남언니 앱 기준</div>
         <canvas id="gapChart" height="200"></canvas>
       </div>
-      <div class="card">
-        <h3 style="margin-bottom:14px">왜 이 갭이 발생하는가</h3>
-        <p style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:18px">병원은 구환을 강남언니가 아닌 자체 CRM으로 관리합니다. ROAS 격차가 11배이기 때문입니다. 강남언니에 등록된 이벤트는 신환 유치 중심의 저가 상품 위주입니다.</p>
-        <div class="flist">
-          <div class="fitem">
-            <div class="ficon">💰</div>
-            <div><h4>병원의 의도적 구환 이탈</h4><p>구환 ROAS 280% vs 자체 CRM 3,000%. 비용 효율을 위해 구환을 플랫폼 밖으로 유도</p></div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+        <h3>왜 이 갭이 발생하는가</h3>
+        <p style="font-size:14px;color:var(--t2);line-height:1.7">ROAS 격차가 11배이기 때문에 병원은 구환을 강남언니가 아닌 자체 CRM(카카오톡·문자)으로 유도합니다. 플랫폼에 등록된 이벤트는 신환 유치 중심의 저가 상품 위주입니다.</p>
+        <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)">
+            <span style="font-size:14px;font-weight:500">병원의 구환 이탈 유도</span>
+            <span style="font-size:12px;color:var(--t3)">ROAS 11배 차이</span>
           </div>
-          <div class="fitem">
-            <div class="ficon">📋</div>
-            <div><h4>신환 중심 이벤트 구성</h4><p>공홈 98개 대비 강남언니 34개(35%) 등록. 등록 이벤트 평균가도 공홈 대비 29% 낮음</p></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:1px solid var(--border)">
+            <span style="font-size:14px;font-weight:500">신환 중심 이벤트 구성</span>
+            <span style="font-size:12px;color:var(--t3)">공홈 98개 vs 앱 34개</span>
           </div>
-          <div class="fitem">
-            <div class="ficon">📱</div>
-            <div><h4>앱 내 재방문 동인 부재</h4><p>탐색·가격 비교용으로만 앱 활용. 재예약을 위한 별도 플로우 없음. 포인트가 유일한 재방문 유인</p></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px">
+            <span style="font-size:14px;font-weight:500">앱 내 재방문 동인 부재</span>
+            <span style="font-size:12px;color:var(--t3)">포인트만 유일한 유인</span>
           </div>
         </div>
       </div>
@@ -616,23 +638,23 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
         <div class="flist">
           <div class="fitem">
             <div class="ficon">👨‍⚕️</div>
-            <div><h4>의사에 대한 신뢰 (술기 + 태도)</h4><p>고관여 시술일수록 의사 개인 의존도 높음. "꼼꼼하게 해준다"는 경험이 반복 방문의 핵심 트리거.</p></div>
+            <div><h4>의사에 대한 신뢰 (술기 + 태도)</h4><p>고관여 시술일수록 의사 개인 의존도 높음. "꼼꼼하게 해준다"는 경험이 반복 방문의 핵심 트리거.</p><div style="margin-top:6px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span><span class="src idi">IDI 03</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">✨</div>
-            <div><h4>시술 결과 만족 — 1위 (31.76% KR)</h4><p>재방문 이유 1위. 효과를 경험했을 때 같은 의사·병원을 다시 찾는 패턴이 강하게 나타남.</p></div>
+            <div><h4>시술 결과 만족 — 1위 (31.76% KR)</h4><p>재방문 이유 1위. 효과를 경험했을 때 같은 의사·병원을 다시 찾는 패턴이 강하게 나타남.</p><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">📍</div>
-            <div><h4>접근성 — 2위 (17.32% KR / 17.58% JP)</h4><p>위치와 교통 접근성이 재방문 이유 2위. 지방 도시에서 SRSU 비중이 상대적으로 높음.</p></div>
+            <div><h4>접근성 — 2위 (17.32% KR / 17.58% JP)</h4><p>위치와 교통 접근성이 재방문 이유 2위. 지방 도시에서 SRSU 비중이 상대적으로 높음.</p><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR/JP</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">🔄</div>
-            <div><h4>지속적 케어 니즈 — 3위 (13.91% KR)</h4><p>3개월 이내 재방문 고객에서 2배 이상 높게 나타남. "관리해야 한다"는 인식이 강한 시술군.</p></div>
+            <div><h4>지속적 케어 니즈 — 3위 (13.91% KR)</h4><p>3개월 이내 재방문 고객에서 2배 이상 높게 나타남. "관리해야 한다"는 인식이 강한 시술군.</p><div style="margin-top:6px"><span class="src survey">고객 설문 1차 · KR</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">🛡️</div>
-            <div><h4>업셀링 없는 안정적 분위기</h4><p>원하지 않는 시술 추천에 강한 거부감. 신뢰를 상업적으로 소비하는 병원에서는 이탈로 연결.</p></div>
+            <div><h4>업셀링 없는 안정적 분위기</h4><p>원하지 않는 시술 추천에 강한 거부감. 신뢰를 상업적으로 소비하는 병원에서는 이탈로 연결.</p><div style="margin-top:6px"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span></div></div>
           </div>
         </div>
       </div>
@@ -641,19 +663,19 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
         <div class="flist">
           <div class="fitem">
             <div class="ficon">🔀</div>
-            <div><h4>시술 변경</h4><p>새로운 시술을 시도할 때 해당 시술에 특화된 의사를 찾아 병원 변경. "시술마다 병원은 따로 있어요."</p></div>
+            <div><h4>시술 변경</h4><p>새로운 시술을 시도할 때 해당 시술에 특화된 의사를 찾아 병원 변경. "시술마다 병원은 따로 있어요."</p><div style="margin-top:6px"><span class="src idi">IDI 03</span><span class="src data">SRSU 추가분석</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">🚪</div>
-            <div><h4>담당 의사 이동/퇴사</h4><p>병원이 아닌 의사를 신뢰했기 때문에 의사 이동 시 고객도 함께 이탈. SRSU의 핵심이 Same Hospital이 아닌 Same Doctor.</p></div>
+            <div><h4>담당 의사 이동/퇴사</h4><p>병원이 아닌 의사를 신뢰했기 때문에 의사 이동 시 고객도 함께 이탈. SRSU의 핵심이 Same Hospital이 아닌 Same Doctor.</p><div style="margin-top:6px"><span class="src fgd">FGD · Rosie</span><span class="src idi">IDI 02</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">📉</div>
-            <div><h4>시술/서비스 퀄리티 하락</h4><p>한 번의 나쁜 경험이 락인을 해제. 퀄리티 일관성이 SRSU 유지의 필수 조건.</p></div>
+            <div><h4>시술/서비스 퀄리티 하락</h4><p>한 번의 나쁜 경험이 락인을 해제. 퀄리티 일관성이 SRSU 유지의 필수 조건.</p><div style="margin-top:6px"><span class="src idi">IDI 01</span><span class="src idi">IDI 04</span></div></div>
           </div>
           <div class="fitem">
             <div class="ficon">📢</div>
-            <div><h4>과도한 업셀링 / CRM 공격</h4><p>"저는 그걸 원하지 않는 상태에서 어떤 얘기를 해주시면 반감이 돼요." (Jace, FGD)</p></div>
+            <div><h4>과도한 업셀링 / CRM 공격</h4><p>"저는 그걸 원하지 않는 상태에서 어떤 얘기를 해주시면 반감이 돼요."</p><div style="margin-top:6px"><span class="src fgd">FGD · Jace</span><span class="src idi">IDI 01</span></div></div>
           </div>
         </div>
         <div class="cw" style="margin-top:20px">
@@ -1099,6 +1121,22 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 </footer>
 
 <script>
+// Right TOC scroll spy
+const tocItems=document.querySelectorAll('.rtoc-item');
+const sections=['insights','overview','profile','lockin','channel','painpoints','compare','journey','opportunity'];
+function updateToc(){
+  let current='insights';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<=100)current=id;
+  });
+  tocItems.forEach(item=>{
+    item.classList.toggle('active',item.getAttribute('href')==='#'+current);
+  });
+}
+window.addEventListener('scroll',updateToc,{passive:true});
+updateToc();
+
 // Accordion: first card open by default, rest closed on load
 document.querySelectorAll('.ins-card').forEach((c,i)=>{
   if(i>0) c.classList.remove('open');
