@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRSU 고객 이해 대시보드</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#fff;
+  --bg:#fafafa;
+  --bg2:#f3f3f3;
+  --border:#e8e8e8;
+  --t1:#111;
+  --t2:#767676;
+  --t3:#aaa;
+  --black:#111;
+}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Noto Sans KR',BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:sticky;top:0;background:rgba(250,250,250,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1240px;margin:0 auto;padding:0 40px}
+.nav-logo{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t1)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:12px;color:var(--t2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--t1)}
+
+/* LAYOUT */
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+section{padding:72px 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+
+/* TYPE */
+.label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+h1{font-size:50px;font-weight:700;line-height:1.12;letter-spacing:-.03em}
+h2{font-size:30px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.lead{font-size:16px;color:var(--t2);line-height:1.75;max-width:620px;margin-top:12px}
+.sec-head{margin-bottom:44px}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
+
+/* CARD */
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px}
+
+/* STAT CARDS */
+.stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:6px}
+.stat .sl{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
+.stat .sn{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--t1)}
+.stat .sn.dim{color:#ccc}
+.stat .sd{font-size:12px;color:var(--t2);margin-top:2px}
+.stat .sc{font-size:11px;color:var(--t3);background:var(--bg2);padding:3px 8px;border-radius:4px;display:inline-block;width:fit-content;margin-top:2px}
+
+/* INSIGHT BOX */
+.insight{background:var(--t1);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.insight .il{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;opacity:.45;margin-bottom:10px}
+.insight p{font-size:16px;line-height:1.65;opacity:.9}
+.insight strong{opacity:1;font-weight:700}
+
+/* QUOTE */
+.quote{background:var(--bg2);border-left:2px solid var(--t1);padding:14px 18px;border-radius:0 8px 8px 0;margin-top:14px}
+.quote p{font-size:13px;color:var(--t2);font-style:italic;line-height:1.65}
+.quote .qs{font-size:11px;color:var(--t3);margin-top:6px;font-style:normal}
+
+/* FACTOR LIST */
+.flist{display:flex;flex-direction:column;gap:10px}
+.fitem{display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--white);border:1px solid var(--border);border-radius:8px}
+.ficon{width:30px;height:30px;border-radius:7px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.fitem h4{font-size:13px;font-weight:600;margin-bottom:3px}
+.fitem p{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* JOURNEY */
+.journey{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.jstep{padding:24px;border-right:1px solid var(--border)}
+.jstep:last-child{border-right:none}
+.jnum{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.jtitle{font-size:15px;font-weight:600;margin-bottom:12px}
+.jbadge{display:inline-flex;padding:3px 10px;background:var(--t1);color:#fff;border-radius:100px;font-size:11px;font-weight:500;margin-bottom:12px}
+.jlist{list-style:none;display:flex;flex-direction:column;gap:5px}
+.jlist li{font-size:12px;color:var(--t2);padding-left:12px;position:relative}
+.jlist li::before{content:'—';position:absolute;left:0;color:var(--t3);font-size:10px;top:2px}
+
+/* PAIN CARDS */
+.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.pcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px}
+.pnum{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.1em;margin-bottom:10px}
+.pcard h4{font-size:14px;font-weight:600;margin-bottom:8px}
+.pcard p{font-size:12px;color:var(--t2);line-height:1.6}
+
+/* INVOLVEMENT */
+.invgrid{display:grid;grid-template-columns:1fr 1fr;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.invcard{padding:28px}
+.invcard:first-child{border-right:1px solid var(--border)}
+.invbadge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px;margin-bottom:14px;display:inline-block}
+.invcard.hi .invbadge{background:var(--t1);color:#fff}
+.invcard.lo .invbadge{background:var(--border);color:var(--t2)}
+.invcard h3{font-size:18px;margin-bottom:6px}
+.invdesc{font-size:13px;color:var(--t2);margin-bottom:18px}
+.alist{display:flex;flex-direction:column;gap:7px}
+.aitem{display:flex;gap:10px;align-items:flex-start}
+.akey{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);min-width:52px;padding-top:2px;flex-shrink:0}
+.aval{font-size:12px;color:var(--t2)}
+
+/* TABLE */
+.rtable{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:13px}
+.rtable th{padding:14px 18px;text-align:left;font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;background:var(--bg2);border-bottom:1px solid var(--border)}
+.rtable td{padding:14px 18px;color:var(--t2);border-bottom:1px solid var(--border)}
+.rtable tr:last-child td{border-bottom:none}
+.rtable td:first-child{font-weight:600;color:var(--t1)}
+
+/* OPP CARDS */
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ocard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px}
+.oarea{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:10px}
+.ocard h3{font-size:16px;margin-bottom:8px}
+.ocard p{font-size:13px;color:var(--t2);line-height:1.6}
+
+/* TAG */
+.tag{display:inline-flex;align-items:center;padding:3px 9px;background:var(--bg2);border-radius:100px;font-size:11px;color:var(--t2);font-weight:500}
+.tag.dark{background:var(--t1);color:#fff}
+
+/* CHART WRAPPER */
+.cw{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px}
+.ct{font-size:13px;font-weight:600;margin-bottom:3px}
+.cs{font-size:11px;color:var(--t3);margin-bottom:20px}
+
+/* HERO META */
+.hero-meta{display:flex;gap:36px;margin-top:44px;padding-top:28px;border-top:1px solid var(--border)}
+.hmi .hml{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.hmi .hmv{font-size:13px;color:var(--t2)}
+
+/* FOOT */
+footer{padding:40px 0;background:var(--white);border-top:1px solid var(--border)}
+.foot-inner{display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:11px;color:var(--t3)}
+
+/* UL minimal */
+.mlist{list-style:none;display:flex;flex-direction:column;gap:5px}
+.mlist li{font-size:13px;color:var(--t2);padding-left:12px;position:relative}
+.mlist li::before{content:'—';position:absolute;left:0;color:var(--t3);font-size:10px;top:3px}
+
+hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
+
+@media(max-width:768px){
+  .wrap{padding:0 20px}
+  h1{font-size:32px}
+  h2{font-size:22px}
+  .g4,.g3,.g2{grid-template-columns:1fr}
+  .pgrid,.journey,.invgrid,.ogrid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">SRSU Research</span>
+    <ul class="nav-links">
+      <li><a href="#overview">현황 갭</a></li>
+      <li><a href="#profile">고객 이해</a></li>
+      <li><a href="#lockin">재방문 요인</a></li>
+      <li><a href="#channel">예약 채널</a></li>
+      <li><a href="#painpoints">페인포인트</a></li>
+      <li><a href="#compare">한일 비교</a></li>
+      <li><a href="#opportunity">기회 영역</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="background:var(--white);padding:88px 0 72px">
+  <div class="wrap">
+    <div class="label">SRSU Customer Research · 2025–2026</div>
+    <h1>SRSU 고객은<br>플랫폼 밖에서<br>재방문한다</h1>
+    <p class="lead">강남언니 유저의 실제 재방문율은 65%이지만, 플랫폼 내 재방문은 14%에 불과합니다. 고객은 의사를 신뢰해서 돌아오지만, 그 여정은 카카오톡과 현장 예약을 통합니다. 이 갭을 이해하는 것이 SRSU 전략의 출발점입니다.</p>
+    <div class="hero-meta">
+      <div class="hmi"><div class="hml">Research Period</div><div class="hmv">2025년 5월 – 2026년 2월</div></div>
+      <div class="hmi"><div class="hml">Methods</div><div class="hmv">FGD · IDI · 정량 설문 · 데이터 분석</div></div>
+      <div class="hmi"><div class="hml">Markets</div><div class="hmv">한국 · 일본</div></div>
+      <div class="hmi"><div class="hml">Sources</div><div class="hmv">리서치 7종 + 플랫폼 데이터</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">핵심 수치</div>
+      <h2>플랫폼과 리얼월드의 간극</h2>
+      <p class="lead">데이터가 보여주는 SRSU의 현 상태. 재방문은 일어나고 있지만 강남언니를 통하지 않습니다.</p>
+    </div>
+
+    <div class="g4" style="margin-bottom:20px">
+      <div class="stat">
+        <span class="sl">리얼월드 재방문율</span>
+        <span class="sn">65%</span>
+        <span class="sd">실제 병원 기준 3개월 내 재방문 고객 비중 (지유 일산점 데이터)</span>
+      </div>
+      <div class="stat">
+        <span class="sl">강남언니 내 SRSU 비중</span>
+        <span class="sn dim">14%</span>
+        <span class="sd">앱 기준 동일 병원 재방문 평균 — 리얼월드의 1/5 수준</span>
+        <span class="sc">갭 51%p</span>
+      </div>
+      <div class="stat">
+        <span class="sl">병원 자체 CRM ROAS</span>
+        <span class="sn">3,000%</span>
+        <span class="sd">병원이 카톡·문자로 구환 유치 시 광고 수익률 (중앙값 추정)</span>
+      </div>
+      <div class="stat">
+        <span class="sl">강남언니 구환 ROAS</span>
+        <span class="sn dim">280%</span>
+        <span class="sd">강남언니를 통한 구환 유치 시 병원 입장 광고 수익률</span>
+        <span class="sc">약 11배 차이</span>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="cw">
+        <div class="ct">3개월 내 재방문율 비교</div>
+        <div class="cs">리얼월드(실제 병원 데이터) vs 강남언니 앱 기준</div>
+        <canvas id="gapChart" height="200"></canvas>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:14px">왜 이 갭이 발생하는가</h3>
+        <p style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:18px">병원은 구환을 강남언니가 아닌 자체 CRM으로 관리합니다. ROAS 격차가 11배이기 때문입니다. 강남언니에 등록된 이벤트는 신환 유치 중심의 저가 상품 위주입니다.</p>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon">💰</div>
+            <div><h4>병원의 의도적 구환 이탈</h4><p>구환 ROAS 280% vs 자체 CRM 3,000%. 비용 효율을 위해 구환을 플랫폼 밖으로 유도</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">📋</div>
+            <div><h4>신환 중심 이벤트 구성</h4><p>공홈 98개 대비 강남언니 34개(35%) 등록. 등록 이벤트 평균가도 공홈 대비 29% 낮음</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">📱</div>
+            <div><h4>앱 내 재방문 동인 부재</h4><p>탐색·가격 비교용으로만 앱 활용. 재예약을 위한 별도 플로우 없음. 포인트가 유일한 재방문 유인</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:20px">
+      <div class="il">핵심 인사이트</div>
+      <p>강남언니에서 SRSU가 낮은 것은 고객이 재방문하지 않아서가 아닙니다. 재방문은 하지만 <strong>그 경로가 플랫폼을 통하지 않는 것</strong>입니다. RSU 유저 중 동일 병원을 선택하는 비중도 40%로 의미 있게 높은데, 이들이 플랫폼이 아닌 카카오톡·전화로 재방문하고 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">고객 이해</div>
+      <h2>SRSU 고객의 두 가지 패턴</h2>
+      <p class="lead">시술의 고관여/저관여 특성이 재방문 동기와 채널 선택을 완전히 다르게 만듭니다.</p>
+    </div>
+
+    <div class="invgrid">
+      <div class="invcard hi">
+        <span class="invbadge">고관여 시술</span>
+        <h3>의사를 믿고 다시 온다</h3>
+        <p class="invdesc">술기와 결과가 중요하고 불가역적인 시술. SRSU의 핵심 고객군.</p>
+        <div class="alist">
+          <div class="aitem"><span class="akey">예시</span><span class="aval">리프팅, 스킨부스터, 인모드, 필러</span></div>
+          <div class="aitem"><span class="akey">결정요인</span><span class="aval">의사의 술기 + 태도에 대한 신뢰</span></div>
+          <div class="aitem"><span class="akey">락인</span><span class="aval">의사 개인에 대한 신뢰 → 강한 재방문</span></div>
+          <div class="aitem"><span class="akey">이탈</span><span class="aval">의사 이동/퇴사, 시술 퀄리티 하락</span></div>
+        </div>
+        <div class="quote">
+          <p>"예전에 제가 받았던 리프팅의 스킬과 너무 다른 스킬로... 그거에 완전 홀딱 빠졌어요."</p>
+          <span class="qs">— 내부 직원 FGD, Rosie</span>
+        </div>
+      </div>
+      <div class="invcard lo">
+        <span class="invbadge">저관여 시술</span>
+        <h3>가격이 좋은 곳에 간다</h3>
+        <p class="invdesc">가역적이고 표준화된 시술. 가격이 핵심 결정 요인으로 SRSU 유인이 낮음.</p>
+        <div class="alist">
+          <div class="aitem"><span class="akey">예시</span><span class="aval">보톡스, 제모 (일부)</span></div>
+          <div class="aitem"><span class="akey">결정요인</span><span class="aval">가격 → 접근성 → 의사 신뢰 순</span></div>
+          <div class="aitem"><span class="akey">락인</span><span class="aval">낮음. 더 저렴한 대안 발견 시 이탈</span></div>
+          <div class="aitem"><span class="akey">이탈</span><span class="aval">가격 변동, 더 저렴한 병원 발견</span></div>
+        </div>
+        <div class="quote">
+          <p>"보톡스는 전 가격이 제일 중요해요. 제가 지불할 수 있는 가격대가 맥스 8만원이라 가격 보고 가요."</p>
+          <span class="qs">— 내부 직원 FGD, Su</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px" class="cw">
+      <div class="ct">카테고리별 동일 병원 재선택 비율</div>
+      <div class="cs">동일 카테고리 재선택 유저 중 동일 병원을 선택한 비율. 제모·피부·보톡스 상위권.</div>
+      <canvas id="catChart" height="160"></canvas>
+    </div>
+
+    <div style="margin-top:20px" class="g2">
+      <div class="card">
+        <h3 style="margin-bottom:12px">유입 경로</h3>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon">👥</div>
+            <div><h4>지인 추천 · 인플루언서</h4><p>"OO가 여기서 했대"가 가장 강력한 트리거. SNS 인플루언서 DM 정보도 영향.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">🔍</div>
+            <div><h4>강남언니 탐색</h4><p>가격 비교와 이벤트 확인 용도. 후기는 어뷰징 의심으로 신뢰도 낮게 인식.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">선결제 행동</h3>
+        <p style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:14px">고관여 SRSU 고객은 다회권·패키지·금액권 형태로 큰 금액을 선결제합니다. 이는 병원과의 라포가 충분히 형성된 이후에 발생합니다.</p>
+        <div class="quote">
+          <p>"대표원장님들이 5~10% 더 받으시는데, 나의 시술 결과가 개런티 된다면요."</p>
+          <span class="qs">— 내부 직원 FGD, Su</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCK-IN -->
+<section id="lockin">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">재방문 요인</div>
+      <h2>왜 같은 병원에 다시 오는가</h2>
+      <p class="lead">정량 설문과 정성 인터뷰에서 공통으로 확인된 락인 요인과 이탈 요인입니다.</p>
+    </div>
+
+    <div class="g2" style="gap:28px">
+      <div>
+        <h3 style="margin-bottom:16px">락인 요인</h3>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon">👨‍⚕️</div>
+            <div><h4>의사에 대한 신뢰 (술기 + 태도)</h4><p>고관여 시술일수록 의사 개인 의존도 높음. "꼼꼼하게 해준다"는 경험이 반복 방문의 핵심 트리거.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">✨</div>
+            <div><h4>시술 결과 만족 — 1위 (31.76% KR)</h4><p>재방문 이유 1위. 효과를 경험했을 때 같은 의사·병원을 다시 찾는 패턴이 강하게 나타남.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">📍</div>
+            <div><h4>접근성 — 2위 (17.32% KR / 17.58% JP)</h4><p>위치와 교통 접근성이 재방문 이유 2위. 지방 도시에서 SRSU 비중이 상대적으로 높음.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">🔄</div>
+            <div><h4>지속적 케어 니즈 — 3위 (13.91% KR)</h4><p>3개월 이내 재방문 고객에서 2배 이상 높게 나타남. "관리해야 한다"는 인식이 강한 시술군.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">🛡️</div>
+            <div><h4>업셀링 없는 안정적 분위기</h4><p>원하지 않는 시술 추천에 강한 거부감. 신뢰를 상업적으로 소비하는 병원에서는 이탈로 연결.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:16px">이탈 요인</h3>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon">🔀</div>
+            <div><h4>시술 변경</h4><p>새로운 시술을 시도할 때 해당 시술에 특화된 의사를 찾아 병원 변경. "시술마다 병원은 따로 있어요."</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">🚪</div>
+            <div><h4>담당 의사 이동/퇴사</h4><p>병원이 아닌 의사를 신뢰했기 때문에 의사 이동 시 고객도 함께 이탈. SRSU의 핵심이 Same Hospital이 아닌 Same Doctor.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">📉</div>
+            <div><h4>시술/서비스 퀄리티 하락</h4><p>한 번의 나쁜 경험이 락인을 해제. 퀄리티 일관성이 SRSU 유지의 필수 조건.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">📢</div>
+            <div><h4>과도한 업셀링 / CRM 공격</h4><p>"저는 그걸 원하지 않는 상태에서 어떤 얘기를 해주시면 반감이 돼요." (Jace, FGD)</p></div>
+          </div>
+        </div>
+        <div class="cw" style="margin-top:20px">
+          <div class="ct">재방문 이유 Top 5 (한국 고객 설문)</div>
+          <div class="cs">동일 병원에 재방문하는 이유 기준</div>
+          <canvas id="lockChart" height="190"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNEL -->
+<section id="channel" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">예약 채널 행동</div>
+      <h2>첫 방문과 재방문의 채널은 다르다</h2>
+      <p class="lead">강남언니는 탐색과 첫 예약의 장입니다. 재방문은 카카오톡과 현장 예약으로 이동합니다.</p>
+    </div>
+
+    <div class="journey">
+      <div class="jstep">
+        <div class="jnum">Step 01</div>
+        <div class="jtitle">첫 탐색 · 첫 예약</div>
+        <span class="jbadge">강남언니 / SNS</span>
+        <ul class="jlist">
+          <li>지인 추천, 인플루언서 경유</li>
+          <li>가격 비교 및 이벤트 확인</li>
+          <li>후기 검증 (신뢰도 낮게 인식)</li>
+          <li>포인트 적립/사용</li>
+        </ul>
+      </div>
+      <div class="jstep">
+        <div class="jnum">Step 02</div>
+        <div class="jtitle">재방문 · 반복 시술</div>
+        <span class="jbadge">카카오톡 / 현장예약</span>
+        <ul class="jlist">
+          <li>카톡: 즉시성 + 연속성 + 편의성</li>
+          <li>현장예약: 관리 명목, 시간 선점</li>
+          <li>"설명이 필요 없어 빠름"</li>
+          <li>다회권·금액권 보유 시 병원 직접</li>
+        </ul>
+      </div>
+      <div class="jstep">
+        <div class="jnum">Step 03</div>
+        <div class="jtitle">일정 변경 · QnA</div>
+        <span class="jbadge">카카오톡</span>
+        <ul class="jlist">
+          <li>시술 후 주의사항 문의</li>
+          <li>예약 변경 요청</li>
+          <li>"대화가 끊기지 않는 것이 핵심"</li>
+          <li>응답 속도보다 연속성이 중요</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-top:20px">
+      <div class="card">
+        <h3 style="margin-bottom:16px">카카오톡이 선택받는 3가지 이유</h3>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon">⚡</div>
+            <div><h4>즉시성</h4><p>실제 응답 리드타임과 관계없이 "바로 보낼 수 있다"는 인식 자체가 만족감을 줌. 주 사용 채널이라 상시 접근 가능.</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">🔗</div>
+            <div><h4>연속성</h4><p>대화 맥락이 유지됨. "응답이 얼마나 빨리 오느냐보다, 시작되면 끊이지 않는 게 좋아요." (Su, FGD)</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">👆</div>
+            <div><h4>편의성</h4><p>이미 익숙한 채널. 전용 예약 버튼이 있는 경우 날짜 선택만으로 예약 완결. 맥락 전환 없음.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:16px">강남언니의 현재 역할</h3>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px">포인트 사용 / 적립</span>
+            <span class="tag dark">주 사용 이유</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px">새 시술 탐색 · 가격 비교</span>
+            <span class="tag">첫 방문 시</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px">재방문 예약</span>
+            <span class="tag">거의 미사용</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0">
+            <span style="font-size:13px">이력 관리 / 케어 연속성</span>
+            <span class="tag">기능 없음</span>
+          </div>
+        </div>
+        <div class="quote">
+          <p>"강남언니 무조건 하는 이유는 포인트 때문이긴 하거든요. 그거 아니면 그냥 카톡으로..."</p>
+          <span class="qs">— 내부 직원 FGD, Jace</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section id="painpoints">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">고객 페인포인트</div>
+      <h2>재예약 과정의 6가지 문제</h2>
+      <p class="lead">정성 인터뷰와 정량 설문에서 공통으로 나타난 재예약 경험의 주요 불편 지점입니다.</p>
+    </div>
+
+    <div class="pgrid">
+      <div class="pcard">
+        <div class="pnum">01</div>
+        <h4>소통 지연</h4>
+        <p>카카오톡 문의 후 반나절 이상 응답 대기. 예약 확정의 불확실성이 다른 병원 탐색으로 연결됨.</p>
+        <div class="quote"><p>"카카오톡으로 문의했는데 답장이 늦으면 확정이 된 게 아니라 다른 병원을 알아볼 수밖에 없었어요."</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pnum">02</div>
+        <h4>전화 의존성</h4>
+        <p>예약·변경·취소를 전화로만 처리하도록 제한. 업무 중 통화 불가, 연결 지연, 불친절 응대 경험.</p>
+        <div class="quote"><p>"전화로 재예약을 해야 해서 조금 번거로웠어요. 운영시간에 맞춰 전화해야 해서 일정 맞추기가 쉽지 않았습니다."</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pnum">03</div>
+        <h4>원하는 일정 예약 어려움</h4>
+        <p>실시간 예약 현황을 볼 캘린더 부재. 희망 시간을 제시하고 답변을 기다리는 비효율 반복.</p>
+        <div class="quote"><p>"예약 가능한 시간대를 한눈에 볼 수 있으면 좋겠어요."</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pnum">04</div>
+        <h4>예약 수정·변경 어려움</h4>
+        <p>온라인으로 예약했어도 변경은 전화로만 가능한 경우 多. 즉시 처리 안 되고 재확인 대기 반복.</p>
+        <div class="quote"><p>"남는 시간대를 직접 선택하여 예약을 변경하고 싶다는 생각이 들었습니다."</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pnum">05</div>
+        <h4>시술 이력 미연동</h4>
+        <p>재방문임에도 이전 시술 기록이 연동되지 않아 매번 정보 재입력. 연속성 있는 상담·추천 경험 부재.</p>
+        <div class="quote"><p>"전에 받았던 시술에 대한 정보 저장과 앞으로 받으면 좋을 시술에 대한 정보 제공이 부족해요."</p></div>
+      </div>
+      <div class="pcard">
+        <div class="pnum">06</div>
+        <h4>다회권·금액권 관리 불편</h4>
+        <p>선결제 상품의 잔여 횟수를 병원에 매번 물어봐야 함. 추가 회차 예약 플로우가 플랫폼에 없음.</p>
+        <div class="quote"><p>"5회 패키지 결제했는데 2회차 예약은 어떻게 가능한지 확인요청드립니다."</p><span class="qs">— 실제 고객 채널톡 문의</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">한일 비교</div>
+      <h2>한국과 일본의 재방문 패턴 차이</h2>
+      <p class="lead">두 시장은 재방문 동기와 망설임 이유에서 의미 있는 차이를 보입니다.</p>
+    </div>
+
+    <div class="g2" style="margin-bottom:20px">
+      <div class="cw">
+        <div class="ct">재방문을 망설이는 이유</div>
+        <div class="cs">병원 설문 응답 기준 (한국 vs 일본)</div>
+        <canvas id="hesChart" height="250"></canvas>
+      </div>
+      <div class="cw">
+        <div class="ct">신규 vs 기존 고객 유치 노력 비중</div>
+        <div class="cs">한국 vs 일본 클리닉 응답</div>
+        <canvas id="effortChart" height="250"></canvas>
+      </div>
+    </div>
+
+    <div class="g3" style="margin-bottom:20px">
+      <div class="card">
+        <div class="label" style="margin-bottom:10px">차이점 1</div>
+        <h3>가격 민감도 일본 ＞ 한국</h3>
+        <p style="font-size:13px;color:var(--t2);margin-top:8px;line-height:1.65">일본의 재방문 망설임 이유 중 '혜택/가격 부족'이 56.6%로 압도적. 한국(33.3%)의 1.7배. 일본 고객은 특가·재방문 혜택에 더 민감하게 반응.</p>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:10px">차이점 2</div>
+        <h3>서비스 친절도 일본 ＞ 한국</h3>
+        <p style="font-size:13px;color:var(--t2);margin-top:8px;line-height:1.65">재방문 이유 중 '서비스/응대 만족'이 일본 3위(16.97%) vs 한국 7위(8.01%). 일본 고객에게는 접근성만큼 직원 친절함이 중요.</p>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:10px">차이점 3</div>
+        <h3>의사 지정 선호 한국 ＞ 일본</h3>
+        <p style="font-size:13px;color:var(--t2);margin-top:8px;line-height:1.65">'원하는 의사 지정 어려움' 한국 3위(15.7%) vs 일본 5위(4.8%). 한국은 Same Doctor, 일본은 Same Hospital 경향이 강함.</p>
+      </div>
+    </div>
+
+    <div class="cw">
+      <div class="ct">GN 앱에서 재예약하는 이유 (한국 vs 일본)</div>
+      <div class="cs">강남언니 앱 이용 고객 설문 기준</div>
+      <canvas id="rebookChart" height="170"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- HOSPITAL -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">파트너(병원) 관점</div>
+      <h2>병원이 보는 강남언니 고객 vs SRSU 고객</h2>
+      <p class="lead">파트너 병원은 강남언니 고객과 단골 고객을 명확히 구분합니다.</p>
+    </div>
+
+    <div style="overflow-x:auto;margin-bottom:20px">
+      <table class="rtable">
+        <thead>
+          <tr>
+            <th>구분</th><th>첫 방문</th><th>지불 금액/방식</th><th>재방문 동기</th><th>예약 방법</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>강남언니 고객</td>
+            <td>—</td>
+            <td>앱 결제, 업셀링 성공 시 큰 금액</td>
+            <td>CRM 특가 이벤트 시 재방문</td>
+            <td>주로 강남언니 앱 통해 재예약</td>
+          </tr>
+          <tr>
+            <td>SRSU (단골) 고객</td>
+            <td>지인 소개</td>
+            <td>다회권·패키지·금액권 선결제</td>
+            <td>의사 신뢰 + 병원 직원과 라포</td>
+            <td>시술 직후 현장예약, 전화, 네이버</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g2">
+      <div class="card">
+        <h3 style="margin-bottom:12px">병원이 적극적으로 하지 않는 것</h3>
+        <p style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:14px">선결제 상품(다회권, 금액권) 보유 고객에 대해 적극적 재예약 유도를 하지 않음. "이미 결제되어 있어서 관리 필요성을 못 느낌." 이 공백이 고객 이탈로 연결될 수 있음.</p>
+        <div class="cw" style="border:none;padding:0">
+          <div class="ct" style="margin-bottom:3px">가장 효과적인 재방문 유도 수단</div>
+          <div class="cs">한국 클리닉 설문 기준</div>
+          <canvas id="clinicChart" height="150"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">병원이 가장 중요하게 여기는 것</h3>
+        <p style="font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:14px">재방문 유도보다 <strong>고객 히스토리 기록·공유</strong>를 통한 개인 맞춤형 상담을 핵심으로 인식합니다. 첫 방문부터 SRSU 가능성을 파악하는 노력도 존재합니다.</p>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon">📝</div>
+            <div><h4>잠재 SRSU 고객 파악</h4><p>시술 전 체크리스트, 고객 질문의 질을 통해 SRSU 가능성 판단</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">💬</div>
+            <div><h4>개인 맞춤형 상담</h4><p>이전 시술 내역·특이사항 기반 연속적 상담이 재방문의 핵심 요인</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon">🗂️</div>
+            <div><h4>고객 히스토리 공유 니즈</h4><p>내부 직원 간 고객 정보 공유가 필요하지만 현재 파트너센터에서 미지원</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section id="opportunity" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">플랫폼 기회 영역</div>
+      <h2>강남언니가 SRSU를 가져올 수 있는 기회</h2>
+      <p class="lead">리서치에서 도출된 플랫폼 개입 가능 영역입니다.</p>
+    </div>
+
+    <div class="insight" style="margin-bottom:20px">
+      <div class="il">핵심 질문</div>
+      <p>SRSU는 의사·병원과 고객 사이의 신뢰 관계에서 발생합니다. 플랫폼은 그 신뢰를 대체할 수 없습니다. 그렇다면 플랫폼은 <strong>그 신뢰 관계가 더 잘 유지되도록 돕는 역할</strong>을 할 수 있을까요?</p>
+    </div>
+
+    <div class="ogrid">
+      <div class="ocard">
+        <div class="oarea">Customer Side</div>
+        <h3>재예약 경험 개선</h3>
+        <p>첫 방문과 다른 재방문 여정 설계. 예약 이력 기반으로 "이전 시술·의사로 바로 예약" 플로우. 카카오톡의 즉시성·연속성을 앱에서 재현.</p>
+      </div>
+      <div class="ocard">
+        <div class="oarea">Customer Side</div>
+        <h3>시술 이력 관리</h3>
+        <p>시술 히스토리 저장 및 다음 시술 주기 알림. 다회권·금액권 잔여 횟수 확인 및 예약 연결. "이전 시술 기반 추천" 개인화 경험.</p>
+      </div>
+      <div class="ocard">
+        <div class="oarea">Partner Side</div>
+        <h3>다회성 결제 관리 경험</h3>
+        <p>파트너센터 내 다회권 잔여 횟수 확인만 가능한 현재 상태에서, 고객에게 직접 재예약 플로우 연결. 병원 입장에서 구환 ROAS 개선 동기 제공.</p>
+      </div>
+      <div class="ocard">
+        <div class="oarea">Partner Side</div>
+        <h3>고객 히스토리 공유</h3>
+        <p>병원이 가장 필요로 하는 "이전 시술 내역과 특이사항 기록·공유". 파트너센터 내 맞춤형 상담 히스토리 기능이 SRSU를 만드는 직접적 수단.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <div class="label" style="margin-bottom:16px">리서치 한계 및 향후 과제</div>
+      <div class="g3">
+        <div>
+          <h4 style="margin-bottom:8px">추가 확인 필요</h4>
+          <ul class="mlist">
+            <li>다회권·금액권이 SRSU에 미치는 영향 정도</li>
+            <li>병원 중심 SRSU vs 의사 중심 SRSU 비율</li>
+            <li>대형 네트워크 병원에서의 SRSU 패턴</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:8px">리서치 한계</h4>
+          <ul class="mlist">
+            <li>FGD는 내부 직원 대상으로 보편성 한계</li>
+            <li>IDI는 중소형 인하우스 병원 중심</li>
+            <li>고객 설문은 강남언니 유저만 대상</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:8px">향후 리서치 방향</h4>
+          <ul class="mlist">
+            <li>고관여/저관여 고객군 분리 IDI</li>
+            <li>재예약 플로우 프로토타입 사용성 테스트</li>
+            <li>플랫폼 개입 실험 (A/B 테스트)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <p>SRSU Customer Research Dashboard · Healing Paper · 2025–2026</p>
+      <p>FGD · IDI · Survey (KR/JP) · Platform Data Analysis</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+Chart.defaults.font.family="'-apple-system','Apple SD Gothic Neo','Noto Sans KR',sans-serif";
+Chart.defaults.font.size=12;
+Chart.defaults.color='#767676';
+Chart.defaults.plugins.legend.display=false;
+
+const B='#111',G='#ccc',L='#f0f0f0',BD='#e8e8e8';
+
+// 1. Gap Chart
+new Chart(document.getElementById('gapChart'),{
+  type:'bar',
+  data:{
+    labels:['리얼월드 (실제 병원)','강남언니 앱'],
+    datasets:[{data:[65,14],backgroundColor:[B,L],borderColor:[B,BD],borderWidth:1,borderRadius:6,barThickness:56}]
+  },
+  options:{responsive:true,plugins:{tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},
+    scales:{
+      x:{grid:{display:false},border:{display:false},ticks:{font:{size:13}}},
+      y:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%',stepSize:20},max:80}
+    }
+  }
+});
+
+// 2. Category Chart
+new Chart(document.getElementById('catChart'),{
+  type:'bar',
+  data:{
+    labels:['제모','피부','보톡스','지방성형','리프팅','코성형','치아','필러'],
+    datasets:[{
+      data:[63,56,56,55,50,44,43,41],
+      backgroundColor:[B,B,B,B,'#888',L,L,L],
+      borderColor:'transparent',borderRadius:4,barThickness:28
+    }]
+  },
+  options:{responsive:true,indexAxis:'y',
+    plugins:{tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},
+    scales:{
+      x:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%'},max:80},
+      y:{grid:{display:false},border:{display:false}}
+    }
+  }
+});
+
+// 3. Lock-in reasons
+new Chart(document.getElementById('lockChart'),{
+  type:'bar',
+  data:{
+    labels:['시술 효과 만족','위치 / 접근성','지속적 케어','CL 서비스 만족','의사 신뢰'],
+    datasets:[{data:[31.76,17.32,13.91,8.01,7.0],backgroundColor:B,borderRadius:4,barThickness:22}]
+  },
+  options:{responsive:true,indexAxis:'y',
+    plugins:{tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},
+    scales:{
+      x:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%'},max:40},
+      y:{grid:{display:false},border:{display:false}}
+    }
+  }
+});
+
+// 4. Hesitation Chart
+new Chart(document.getElementById('hesChart'),{
+  type:'bar',
+  data:{
+    labels:['혜택/가격 부족','날짜 예약 어려움','의사 지정 어려움','시술 메뉴 부족','적합 시술 모름'],
+    datasets:[
+      {label:'한국',data:[33.3,25.5,15.7,11.8,9.8],backgroundColor:B,borderRadius:3,barThickness:14},
+      {label:'일본',data:[56.6,14.5,4.8,14.5,7.2],backgroundColor:L,borderColor:BD,borderWidth:1,borderRadius:3,barThickness:14}
+    ]
+  },
+  options:{responsive:true,indexAxis:'y',
+    plugins:{
+      legend:{display:true,position:'top',labels:{usePointStyle:true,pointStyle:'rect',padding:14,font:{size:12}}},
+      tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.raw}%`}}
+    },
+    scales:{
+      x:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%'},max:70},
+      y:{grid:{display:false},border:{display:false},ticks:{font:{size:11}}}
+    }
+  }
+});
+
+// 5. Effort Chart
+new Chart(document.getElementById('effortChart'),{
+  type:'bar',
+  data:{
+    labels:['신규 고객에\n더 집중','비슷한 수준','기존 고객에\n더 집중'],
+    datasets:[
+      {label:'한국',data:[71.7,26.4,1.9],backgroundColor:B,borderRadius:3,barThickness:24},
+      {label:'일본',data:[51.1,40.2,8.7],backgroundColor:L,borderColor:BD,borderWidth:1,borderRadius:3,barThickness:24}
+    ]
+  },
+  options:{responsive:true,
+    plugins:{
+      legend:{display:true,position:'top',labels:{usePointStyle:true,pointStyle:'rect',padding:14,font:{size:12}}},
+      tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.raw}%`}}
+    },
+    scales:{
+      x:{grid:{display:false},border:{display:false},ticks:{font:{size:12}}},
+      y:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%'},max:85}
+    }
+  }
+});
+
+// 6. Rebook reasons
+new Chart(document.getElementById('rebookChart'),{
+  type:'bar',
+  data:{
+    labels:['동일 시술 재예약','앱 이용 습관','지속적 케어 필요','재방문 특전','희망일 예약 가능'],
+    datasets:[
+      {label:'한국',data:[27.55,18.16,13.67,8.78,6.33],backgroundColor:B,borderRadius:4,barThickness:24},
+      {label:'일본',data:[30.12,14.91,7.60,11.11,10.82],backgroundColor:L,borderColor:BD,borderWidth:1,borderRadius:4,barThickness:24}
+    ]
+  },
+  options:{responsive:true,
+    plugins:{
+      legend:{display:true,position:'top',labels:{usePointStyle:true,pointStyle:'rect',padding:14,font:{size:12}}},
+      tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.raw}%`}}
+    },
+    scales:{
+      x:{grid:{display:false},border:{display:false},ticks:{font:{size:12}}},
+      y:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%'},max:40}
+    }
+  }
+});
+
+// 7. Clinic effective methods
+new Chart(document.getElementById('clinicChart'),{
+  type:'bar',
+  data:{
+    labels:['즉시예약 지원','재방문 혜택','예약 변경 처리','의사 동일 매칭'],
+    datasets:[{data:[38.0,22.0,19.0,17.9],backgroundColor:[B,'#888',L,L],borderColor:'transparent',borderRadius:4,barThickness:22}]
+  },
+  options:{responsive:true,
+    plugins:{tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},
+    scales:{
+      x:{grid:{display:false},border:{display:false},ticks:{font:{size:11}}},
+      y:{grid:{color:BD},border:{display:false},ticks:{callback:v=>v+'%'},max:50}
+    }
+  }
+});
+</script>
+</body>
+</html>
