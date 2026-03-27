@@ -272,6 +272,18 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
   .viz-row.r2{max-width:100%}
   .viz-fork{max-width:100%}
 }
+
+/* VERSION TOGGLE */
+.vtoggle{display:flex;gap:2px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:3px}
+.vtoggle-btn{padding:5px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--t2);transition:all .15s;white-space:nowrap;letter-spacing:.02em}
+.vtoggle-btn.active{background:var(--white);color:var(--t1);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.lever-bar{width:4px;border-radius:2px 0 0 2px;flex-shrink:0}
+.lever-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex}
+.lever-body{flex:1;padding:24px 28px}
+.lever-priority{display:inline-flex;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:700;white-space:nowrap}
+.lp-high{background:var(--t1);color:#fff}
+.lp-mid{background:var(--bg2);color:var(--t2)}
+.lp-long{background:#f5f5f5;color:var(--t3)}
 </style>
 </head>
 <body>
@@ -290,6 +302,10 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">SRSU Research</span>
+    <div class="vtoggle">
+      <button class="vtoggle-btn active" onclick="switchVersion('v1')">v1.0 인사이트</button>
+      <button class="vtoggle-btn" onclick="switchVersion('v2')">v2.0 레버 탐색</button>
+    </div>
     <ul class="nav-links">
       <li><a href="#insights">핵심 인사이트</a></li>
       <li><a href="#journey">여정맵</a></li>
@@ -302,6 +318,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
     </ul>
   </div>
 </nav>
+
+<div id="v1-content">
 
 <!-- HERO -->
 <section style="background:var(--white);padding:88px 0 72px">
@@ -1208,6 +1226,377 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
   </div>
 </section>
 
+</div><!-- end v1-content -->
+
+<div id="v2-content" style="display:none">
+
+<!-- V2 HERO -->
+<section style="background:var(--white);padding:88px 0 72px">
+  <div class="wrap">
+    <div class="label">SRSU · 고객 Driven · 26-2 시즌</div>
+    <h1>고객이 손을 뻗는 순간,<br>강남언니가<br>거기 있어야 한다</h1>
+    <p class="lead">리서치의 궁극적 목표 — <strong>재방문 의사가 있는 고객</strong>이 강남언니를 통해 SRSU를 진행하게 만드는 TOP 레버를 발견하고 실행한다. 이미 돌아오려는 고객이 있다. 문제는 그 길이 강남언니를 거치지 않는다는 것이다.</p>
+    <div class="hero-meta">
+      <div class="hmi"><div class="hml">시즌 목표</div><div class="hmv">SRSU 전환율 +5%p (base: 13~14%)</div></div>
+      <div class="hmi"><div class="hml">핵심 KR</div><div class="hmv">강남언니로 재예약한 이유 3가지 검증</div></div>
+      <div class="hmi"><div class="hml">전략 방향</div><div class="hmv">탐색 플랫폼 → 재방문 관리 플랫폼</div></div>
+      <div class="hmi"><div class="hml">분류</div><div class="hmv">고객 Driven SRSU · 26-2 (4~6월)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM FRAMING -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">문제 정의</div>
+      <h2>왜 레버가 필요한가</h2>
+      <p class="lead">고객과 병원 모두 강남언니를 통해 재방문할 이유가 현재는 없습니다. 이 문제를 해결하는 것이 레버의 역할입니다.</p>
+    </div>
+
+    <div class="insight" style="margin-bottom:28px">
+      <div class="il">SRSU 정의 (강남언니 기준)</div>
+      <p>강남언니를 통해 특정 병원을 선택한 고객 중, <strong>강남언니를 통해 해당 병원을 재선택</strong>하는 고객. 병원 경험이 나빠 재방문 의사가 없는 고객을 보내는 것은 범위 밖입니다. <strong>재방문 의사는 있지만 카카오톡·전화로 이탈하는 고객</strong>을 강남언니로 끌어오는 것이 핵심입니다.</p>
+    </div>
+
+    <div class="g2" style="margin-bottom:20px">
+      <div class="card">
+        <h3 style="margin-bottom:16px">갭의 규모</h3>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--t1);border-radius:8px">
+            <span style="font-size:14px;font-weight:600;color:#fff">리얼월드 재방문율 (지유 기준)</span>
+            <span style="font-size:28px;font-weight:700;color:#fff;letter-spacing:-.04em">50~65%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--bg2);border-radius:8px;border:1px dashed var(--border)">
+            <span style="font-size:14px;font-weight:600;color:var(--t2)">강남언니 내 SRSU</span>
+            <span style="font-size:28px;font-weight:700;color:var(--t3);letter-spacing:-.04em">13~14%</span>
+          </div>
+          <div style="padding:12px 16px;background:var(--bg2);border-radius:6px;font-size:13px;color:var(--t2);line-height:1.6">
+            재방문 의사가 있는 고객의 <strong style="color:var(--t1)">약 35~50%p</strong>가 플랫폼 밖에서 재방문 중 — 이 수요를 강남언니로 흡수하는 것이 목표
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:16px">왜 고객은 강남언니를 쓰지 않는가</h3>
+        <div class="flist">
+          <div class="fitem">
+            <div class="ficon" style="font-size:12px;font-weight:700;color:var(--t3)">01</div>
+            <div><h4>인식 부재</h4><p>재예약 수단으로 강남언니를 떠올리지 못한다</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon" style="font-size:12px;font-weight:700;color:var(--t3)">02</div>
+            <div><h4>편의성 부재</h4><p>카카오톡·전화 대비 불편하다 — 통제가능성 부족</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon" style="font-size:12px;font-weight:700;color:var(--t3)">03</div>
+            <div><h4>가격 경쟁력 부재</h4><p>병원 직예약이 더 저렴하거나 혜택이 많다</p></div>
+          </div>
+          <div class="fitem">
+            <div class="ficon" style="font-size:12px;font-weight:700;color:var(--t3)">04</div>
+            <div><h4>인센티브 부재</h4><p>강남언니를 써도 추가 이득이 없다 (포인트만)</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BREAKOUT POINT -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">이탈 구간</div>
+      <h2>어디서, 왜 이탈하는가</h2>
+      <p class="lead">SRSU 고객 여정 5단계 중 플랫폼 이탈이 발생하는 결정적 구간 — 이 구간을 파고드는 것이 레버의 타겟입니다.</p>
+    </div>
+
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr)">
+        <div style="padding:20px;border-right:1px solid var(--border)">
+          <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Stage 01</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.3">탐색 및<br>첫 예약</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:10px">가격·후기 비교 후 강남언니로 예약</div>
+          <div style="padding:6px 8px;background:var(--bg2);border-radius:4px;font-size:11px;color:var(--t2)">강남언니 앱<br>이벤트 페이지</div>
+        </div>
+        <div style="padding:20px;border-right:1px solid var(--border)">
+          <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Stage 02</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.3">첫 방문 및<br>시술</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:10px">시술 결과 확인 및 상담실장 대면</div>
+          <div style="padding:6px 8px;background:var(--bg2);border-radius:4px;font-size:11px;color:var(--t2)">병원 데스크<br>상담실, 시술실</div>
+        </div>
+        <div style="padding:20px;border-right:1px solid var(--border)">
+          <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Stage 03</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.3">재방문 트리거<br>(인지)</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:10px">피부 상태 변화 감지 또는 주기 도래</div>
+          <div style="padding:6px 8px;background:var(--bg2);border-radius:4px;font-size:11px;color:var(--t2)">거울(본인 확인)<br>캘린더</div>
+        </div>
+        <div style="padding:20px;border-right:1px solid var(--border);background:var(--t1)">
+          <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Stage 04 ⚡</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.3;color:#fff">재예약 실행<br>← 이탈 구간</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:10px">카톡/전화로 병원 직예약 — 강남언니 이탈</div>
+          <div style="padding:6px 8px;background:rgba(255,255,255,.12);border-radius:4px;font-size:11px;color:rgba(255,255,255,.75)">카카오톡 채널<br>유선전화</div>
+        </div>
+        <div style="padding:20px">
+          <div style="font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Stage 05</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.3">락인 및<br>심화</div>
+          <div style="font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:10px">멤버십 결제 및 히스토리 관리</div>
+          <div style="padding:6px 8px;background:var(--bg2);border-radius:4px;font-size:11px;color:var(--t2)">병원 CRM 문자<br>멤버십 차트</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div class="card">
+        <h3 style="margin-bottom:14px">Stage 04에서 일어나는 일</h3>
+        <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:14px">"슬슬 보톡스 맞을 때 됐네. 저번에 거기 가야지." — 강남언니 앱을 열지 않고 바로 카카오톡 채널을 엽니다. 핵심 이유는 통제가능성과 즉시 확답입니다.</p>
+        <div class="quote" style="margin-bottom:10px"><p>"카톡은 답변이 바로 오니까 내가 일정을 주도하는 느낌이에요. 플랫폼보다 훨씬 속 편하죠."</p><span class="qs">— 중간정리</span></div>
+        <div class="quote"><p>"플랫폼 버튼이 '확정'인지 '대기'인지 헷갈릴 때가 많아요. 그냥 병원에 직접 물어보고 확답받는 게 정확하죠."</p><span class="qs">— 중간정리</span></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:14px">레버가 개입해야 할 타이밍</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="padding:12px 16px;background:var(--bg2);border-radius:8px">
+            <div style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Before Stage 03</div>
+            <div style="font-size:14px;font-weight:700;margin-bottom:3px">강남언니가 먼저 리마인드</div>
+            <div style="font-size:13px;color:var(--t2)">고객이 "슬슬 맞을 때 됐다"고 느끼기 전, 앱이 먼저 트리거</div>
+          </div>
+          <div style="padding:12px 16px;background:var(--t1);border-radius:8px">
+            <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">At Stage 04 ★ 핵심</div>
+            <div style="font-size:14px;font-weight:700;margin-bottom:3px;color:#fff">카카오톡보다 빠른 재예약</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.7)">이전 의사·시술로 원탭 재예약 — 불확실성 제거</div>
+          </div>
+          <div style="padding:12px 16px;background:var(--bg2);border-radius:8px">
+            <div style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">After Stage 04</div>
+            <div style="font-size:14px;font-weight:700;margin-bottom:3px">플랫폼에 쌓이는 이유</div>
+            <div style="font-size:13px;color:var(--t2)">시술 이력, 다음 주기, 적립금이 강남언니에 쌓인다</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVERS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">레버 후보</div>
+      <h2>리서치가 시사하는 TOP 레버 후보</h2>
+      <p class="lead">정성·정량 리서치에서 도출한 레버 후보입니다. "왜 이게 작동할 수 있는가"와 "무엇을 검증해야 하는가"로 구성됩니다.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px">
+
+      <div class="lever-card">
+        <div class="lever-bar" style="background:var(--t1)"></div>
+        <div class="lever-body">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:6px">Lever B · 재예약 경험</div>
+              <h3 style="margin-bottom:8px">원탭 재예약 — 카카오톡보다 빠르게</h3>
+              <p style="font-size:14px;color:var(--t2);line-height:1.65">고객이 카카오톡을 선호하는 핵심은 빠른 확답과 통제가능성. 강남언니에서 이전 의사·시술로 즉시 재예약할 수 있다면 카카오톡의 경쟁력이 줄어든다. ex) "지난 시술 다시 예약하기" 숏컷, 원탭 예약 확정 경험</p>
+            </div>
+            <span class="lever-priority lp-high">우선순위 ★</span>
+          </div>
+          <div class="g2">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">리서치 근거</div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px;margin-bottom:6px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">중간정리</span></div>
+                <div class="ev-text">"카톡은 답변이 바로 오니까 내가 일정을 주도하는 느낌이에요. ARS 기다릴 필요도 없고."</div>
+              </div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">IDI 05</span></div>
+                <div class="ev-text">"결제만 앱에서 하고, 예약 스케줄 조정은 카카오톡으로 하는 편이에요."</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">검증해야 할 것</div>
+              <ul class="mlist" style="gap:6px">
+                <li>원탭 재예약이 카카오톡 대비 충분히 빠른가? (체감 속도 비교)</li>
+                <li>예약 확정의 불확실성을 어떻게 제거할 것인가?</li>
+                <li>병원 스케줄 실시간 연동 없이 구현 가능한 최소 형태는?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lever-card">
+        <div class="lever-bar" style="background:#555"></div>
+        <div class="lever-body">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:6px">Lever A · 타이밍 트리거</div>
+              <h3 style="margin-bottom:8px">시술 주기 리마인더 — 강남언니가 먼저 말을 건다</h3>
+              <p style="font-size:14px;color:var(--t2);line-height:1.65">고객이 "슬슬 맞을 때 됐다"고 느끼기 전, 강남언니가 이전 시술 이력 기반으로 적절한 타이밍에 알림을 보낸다. ex) "보톡스 맞은 지 3개월 됐어요. 단골 병원에 다시 예약해볼까요?"</p>
+            </div>
+            <span class="lever-priority lp-mid">2순위</span>
+          </div>
+          <div class="g2">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">리서치 근거</div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px;margin-bottom:6px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">IDI 05</span></div>
+                <div class="ev-text">"보톡스는 2-3개월마다, 리프팅은 6개월에 한 번씩. 스스로 시술 플랜을 갖고 있어요."</div>
+              </div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">IDI 05</span></div>
+                <div class="ev-text">"시술 주기가 안 찼으면 병원에서 먼저 '한 달 뒤에 오시는 게 좋겠다'고 말해줘요."</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">검증해야 할 것</div>
+              <ul class="mlist" style="gap:6px">
+                <li>강남언니 리마인드를 병원 CRM 문자 대비 더 신뢰하는가?</li>
+                <li>리마인드 → 앱 실행 → 재예약 전환율은 얼마인가?</li>
+                <li>시술 이력 없이 시술 카테고리 추정만으로도 작동하는가?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lever-card">
+        <div class="lever-bar" style="background:#bbb"></div>
+        <div class="lever-body">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:6px">Lever C · 데이터 락인</div>
+              <h3 style="margin-bottom:8px">시술 이력 연동 — 내 기록이 여기 쌓인다</h3>
+              <p style="font-size:14px;color:var(--t2);line-height:1.65">고객이 시술 이력을 직접 관리하거나 병원 차트에 의존하는 현재 구조. 강남언니에 시술 이력·다음 주기·효과 기록이 쌓이면 플랫폼 이탈 비용이 증가한다. ex) 내 시술 히스토리 탭, 다음 시술 주기 타임라인</p>
+            </div>
+            <span class="lever-priority lp-long">중장기</span>
+          </div>
+          <div class="g2">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">리서치 근거</div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px;margin-bottom:6px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">중간정리</span></div>
+                <div class="ev-text">"새로운 병원에 가면 내 피부 타입을 처음부터 다시 설명해야 해요. 그게 너무 피곤하고 불안해요."</div>
+              </div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">IDI 05</span></div>
+                <div class="ev-text">"시술 영수증이나 전후 사진을 개별적으로 찍어 기록해야 해서 불편해요."</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">검증해야 할 것</div>
+              <ul class="mlist" style="gap:6px">
+                <li>고객이 시술 이력을 강남언니에 직접 입력할 의향이 있는가?</li>
+                <li>병원 데이터 연동 없이 고객 입력만으로도 가치가 있는가?</li>
+                <li>이력 연동이 재예약 전환율에 직접 영향을 주는가?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lever-card">
+        <div class="lever-bar" style="background:#ddd"></div>
+        <div class="lever-body">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:6px">Lever D · 인센티브</div>
+              <h3 style="margin-bottom:8px">강남언니를 통해야 더 이득이다</h3>
+              <p style="font-size:14px;color:var(--t2);line-height:1.65">현재 플랫폼 재방문의 유일한 유인은 포인트. 더 강한 인센티브 구조가 필요. ex) 재예약 시 추가 할인, 다회권·금액권 플랫폼 연동 관리, 후기 리워드</p>
+            </div>
+            <span class="lever-priority lp-long">구조 설계 필요</span>
+          </div>
+          <div class="g2">
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">리서치 근거</div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px;margin-bottom:6px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src fgd">FGD · Jace</span></div>
+                <div class="ev-text">"강남언니 무조건 하는 이유는 포인트 때문이긴 해요. 그거 아니면 그냥 카톡으로 할 것 같아요."</div>
+              </div>
+              <div class="ev-item" style="padding:12px 14px;background:var(--bg);border-radius:8px">
+                <div class="ev-src" style="margin-bottom:5px"><span class="src idi">IDI 05</span></div>
+                <div class="ev-text">"쿠폰이나 적립금을 사용해서 더 저렴하게 결제할 수 있다는 게 앱의 장점이에요."</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px">검증해야 할 것</div>
+              <ul class="mlist" style="gap:6px">
+                <li>포인트 외 어떤 인센티브가 카카오톡 이탈을 막는가?</li>
+                <li>다회권·금액권 플랫폼 연동이 병원의 협력을 이끌어낼 수 있는가?</li>
+                <li>후기 리워드가 재예약 트리거로 기능할 수 있는가?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="insight" style="margin-top:24px">
+      <div class="il">리서치가 가리키는 방향</div>
+      <p>고객이 카카오톡을 선택하는 핵심 이유는 <strong>통제가능성</strong>과 <strong>즉시성</strong>입니다. 이를 강남언니에서 구현하는 것이 가장 직접적인 레버입니다. 원탭 재예약이 카카오톡보다 빠르고 확실하다면, 전환의 이유가 생깁니다. 타이밍 트리거는 이 경험 앞에 배치되어 앱을 먼저 열게 만드는 보조 레버로 기능할 수 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">다음 리서치 목표</div>
+      <h2>TOP 레버 검증을 위한 다음 질문</h2>
+      <p class="lead">26-2 시즌 KR: "왜 강남언니로 다시 예약했냐"는 질문에 고객이 답할 수 있는 이유를 최소 3가지 만들고 검증한다.</p>
+    </div>
+
+    <div class="pgrid" style="margin-bottom:24px">
+      <div class="pcard" style="border-color:var(--t1)">
+        <div class="pnum" style="color:var(--t1)">Q1</div>
+        <h4>카카오톡 대비 강남언니가 "더 빠르고 확실하다"는 경험을 만들 수 있는가?</h4>
+        <p>원탭 재예약의 속도와 확정 경험이 카카오톡 직예약 대비 경쟁력이 있는지 검증. 프로토타입 사용성 테스트 또는 A/B 실험 필요.</p>
+      </div>
+      <div class="pcard">
+        <div class="pnum">Q2</div>
+        <h4>어떤 타이밍에, 어떤 메시지가 앱 재방문을 유도하는가?</h4>
+        <p>시술 후 X일 리마인더 vs 병원 CRM 문자 대비 강남언니 알림의 효과 비교. 시술 주기별 최적 타이밍 검증.</p>
+      </div>
+      <div class="pcard">
+        <div class="pnum">Q3</div>
+        <h4>시술 이력 기록이 재방문 결정에 직접 영향을 주는가?</h4>
+        <p>고객이 직접 입력한 이력 기반 알림·추천이 재예약 전환에 영향을 주는지. 고객의 입력 의향과 지속성 검증.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label" style="margin-bottom:16px">리서치 진행 방향</div>
+      <div class="g3">
+        <div>
+          <h4 style="margin-bottom:8px">정성 리서치 (IDI 추가)</h4>
+          <ul class="mlist">
+            <li>원탭 재예약 프로토타입 사용성 테스트</li>
+            <li>시술 이력 관리 니즈 심층 탐색</li>
+            <li>카카오톡 vs 앱 전환 의향 조건 파악</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:8px">정량 실험</h4>
+          <ul class="mlist">
+            <li>시술 후 리마인더 알림 A/B 테스트</li>
+            <li>재예약 CTA 위치·형태 실험</li>
+            <li>원탭 재예약 MVP 전환율 측정</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:8px">검증 목표</h4>
+          <ul class="mlist">
+            <li>SRSU 전환율 +5%p (26-2 목표)</li>
+            <li>재예약 이유 3가지 고객 언어로 정의</li>
+            <li>TOP 레버 1~2개 확정 및 26-3 확장</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end v2-content -->
+
 <footer>
   <div class="wrap">
     <div class="foot-inner">
@@ -1218,6 +1607,16 @@ hr.div{border:none;border-top:1px solid var(--border);margin:24px 0}
 </footer>
 
 <script>
+// Version toggle
+function switchVersion(v){
+  document.getElementById('v1-content').style.display=v==='v1'?'':'none';
+  document.getElementById('v2-content').style.display=v==='v2'?'':'none';
+  document.getElementById('rtoc').style.display=v==='v1'?'':'none';
+  document.querySelectorAll('.vtoggle-btn').forEach((b,i)=>{
+    b.classList.toggle('active',(i===0&&v==='v1')||(i===1&&v==='v2'));
+  });
+}
+
 // Right TOC scroll spy
 const tocItems=document.querySelectorAll('.rtoc-item');
 const sections=['insights','journey','overview','profile','lockin','channel','painpoints','hospital','opportunity'];
